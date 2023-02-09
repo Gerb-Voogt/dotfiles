@@ -1,0 +1,8 @@
+set recolor true
+set recolor_darkcolor #BDE090
+set recolor_lightcolor #000000
+
+
+set font "Jetbrains Mono"
+
+include catppuccin-mocha
