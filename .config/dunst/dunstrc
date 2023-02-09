@@ -1,0 +1,27 @@
+[global]
+	geometry = "300x5-10+50"
+	font = monospace 14
+	title = Dunst
+	class = Dunst
+	timeout = 5
+
+[shortcuts]
+	close = ctrl+space
+	closeall = ctrl+shift+space
+	history = ctrl+grave
+
+[urgency_low]
+    background = "#555555"
+    foreground = "#FFFFFF"
+    timeout = 10
+
+[urgency_normal]
+    background = "#222222"
+    foreground = "#FFFFFF"
+    timeout = 10
+
+[urgency_critical]
+    background = "#FF0000"
+    foreground = "#FFFFFF"
+    timeout = 0
+
