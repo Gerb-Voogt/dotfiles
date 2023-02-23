@@ -47,7 +47,7 @@ def create_new_note(note_name: str) -> None:
 	generate_makefile(note_name)
 
 
-def open_note(note_name: str) -> None:
+def open_note(note_name: str, delete_pdf = False) -> None:
 	print(f"Opening note: {note_name}")
 	if not os.path.isfile(CURRENT_DIR + f"/{note_name}"):
 		raise Exception("File not found")
@@ -56,13 +56,22 @@ def open_note(note_name: str) -> None:
 
 	generate_makefile(note_name)
 	subprocess.run(["make"])
-	subprocess.Popen(["zathura", f"{note_file_name}.pdf"])
-	subprocess.run(["nvim",
+	zathura_process = subprocess.Popen(["zathura", f"{note_file_name}.pdf"])
+
+	# Launching neovim with correct setup
+	launch_nvim_cmd = ["nvim",
 			"-c",
 			f"autocmd BufWritePost {note_name} make",
 			"-c",
 			f"autocmd VimLeave {note_name} !rm -f Makefile",
-			note_name])
+			note_name]
+	subprocess.run(launch_nvim_cmd)
+
+	# Deinit everything
+	zathura_process.kill()
+	if delete_pdf:
+		subprocess.run(["rm", "-f", f"{note_file_name}.pdf"])
+
 
 def parse_note_name(note_name: str) -> None:
 	extension_split = note_name.split(".")
@@ -75,11 +84,11 @@ def parse_note_name(note_name: str) -> None:
 		sys.exit(1)
 
 
-def main(note_name):
+def main(note_name, delete):
 	parse_note_name(note_name)
 	if not os.path.isfile(CURRENT_DIR + f"/{note_name}"):
 		create_new_note(note_name)
-	open_note(note_name)
+	open_note(note_name, delete)
 
 
 if __name__ == "__main__":
@@ -88,7 +97,8 @@ if __name__ == "__main__":
 			prog = 'note',
 			description = 'Note setup automation in Python')
 	parser.add_argument('filename')
+	parser.add_argument('-d', '--delete', action = 'store_true')
 	args = parser.parse_args()
-	print(args.filename)
+	print(args.filename, args.delete)
 
-	main(args.filename)
+	main(args.filename, delete=args.delete)
