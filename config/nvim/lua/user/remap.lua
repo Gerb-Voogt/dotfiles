@@ -20,6 +20,7 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 -- Trouble keymappings
 vim.keymap.set("n", "<leader>t", "<cmd>TroubleToggle<cr>")
 
+-- Resizing
 vim.keymap.set("n", "<C-Up>", ":resize -1<CR>")
 vim.keymap.set("n", "<C-Down>", ":resize +1<CR>")
 vim.keymap.set("n", "<C-Left>", ":vertical resize +1<CR>")

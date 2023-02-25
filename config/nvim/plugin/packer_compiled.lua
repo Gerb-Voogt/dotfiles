@@ -114,6 +114,11 @@ _G.packer_plugins = {
     path = "/home/gerb/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
     url = "https://github.com/lukas-reineke/indent-blankline.nvim"
   },
+  ["jupyter-vim"] = {
+    loaded = true,
+    path = "/home/gerb/.local/share/nvim/site/pack/packer/start/jupyter-vim",
+    url = "https://github.com/jupyter-vim/jupyter-vim"
+  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/home/gerb/.local/share/nvim/site/pack/packer/start/lualine.nvim",
