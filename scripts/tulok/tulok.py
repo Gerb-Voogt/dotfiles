@@ -39,6 +39,19 @@ class Course:
         return return_value
 
 
+class Color:
+   PURPLE = '\033[95m'
+   CYAN = '\033[96m'
+   DARKCYAN = '\033[36m'
+   BLUE = '\033[94m'
+   GREEN = '\033[92m'
+   YELLOW = '\033[93m'
+   RED = '\033[91m'
+   BOLD = '\033[1m'
+   UNDERLINE = '\033[4m'
+   END = '\033[0m'
+
+
 def read_yaml_file(path_to_file: str) -> dict | None:
     target_file = path_to_file + '/info.yaml'
 
@@ -50,7 +63,6 @@ def read_yaml_file(path_to_file: str) -> dict | None:
     except FileNotFoundError:
         # print(f"info.yaml not found at {path_to_file}")
         pass
-
 
 
 def create_course_object_from_yaml_file(path_to_course: str) -> Course | None:
@@ -85,20 +97,16 @@ def scan_folders_for_yaml_file() -> list:
     return course_objects
     
 
-def cd_files_folder(course: Course | None, tmux: bool = False):
-    if course is not None and tmux == False:
-        print('Unimplemented...')
-
-    elif course is not None and tmux == True:
+# Could wrap up this and cd_notes_folder into a generic open
+# some specified path in tmux window function
+def cd_files_folder(course: Course | None):
+    if course is not None:
         files_dir = course.find_files_dir()
         subprocess.run(['tmux', 'new-window', '-c', files_dir])
 
 
-def cd_notes_folder(course: Course | None, tmux: bool = False):
-    if course is not None and tmux == False:
-        print('Unimplemented...')
-
-    elif course is not None and tmux == True:
+def cd_notes_folder(course: Course | None):
+    if course is not None:
         notes_dir = course.find_notes_dir()
         if notes_dir is not None:
             subprocess.run(['tmux', 'new-window', '-c', notes_dir])
@@ -126,12 +134,30 @@ def find_course() -> Course | None:
     
 
 def prompt_menu_1_courses(courses: list[Course]) -> Course | None:
+    # Initializing variables
     selection = 0
+    color = ''
     exit_var = False
     find_var = False
     courses_to_prompt = list(filter(lambda course: course.active == True, courses))
+    
     for index, course in enumerate(courses_to_prompt):
-        print(f'{index + 1}. {course.code} {course.title}')
+        # Extract course code
+        course_code_prefix = course.code[0:2]
+
+        # Set color based on faculty of the course
+        match course_code_prefix:
+            case 'WB' | 'ME':
+                color = Color.YELLOW
+            case 'AM' | 'TW' | 'WI':
+                color = Color.PURPLE
+            case 'SC':
+                color = Color.BLUE
+            case _:
+                color = ''
+
+        print(color + f'{index + 1}. {course.code} {course.title}' + Color.END)
+
     print('Press q to exit')
     print('Press f to find a deactivated course')
 
@@ -192,9 +218,9 @@ def prompt_menu_2_courses(course: Course):
 
     match selection:
         case 1:
-            cd_files_folder(course, tmux = True)
+            cd_files_folder(course)
         case 2:
-            cd_notes_folder(course, tmux = True)
+            cd_notes_folder(course)
         case 3:
             open_url(course)
 
@@ -207,9 +233,6 @@ def main():
         prompt_menu_2_courses(course)
     else:
         print('info.yaml not found')
-
-    # Uncomment this to clear screen
-    # os.system('clear')
 
 if __name__ == '__main__':
     main()
