@@ -228,7 +228,7 @@ return {
     ),
     s({trig="set", dscr="latex set"},
         fmt(
-            "\{<>\}<>",
+            "\\{<>\\}<>",
             { i(1), i(2) },
             { delimiters = "<>" }
         )
