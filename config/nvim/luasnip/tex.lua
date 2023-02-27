@@ -35,7 +35,29 @@ return {
             { delimiters = "<>" }
         )
     ),
-    s({trig="$$", dscr="A LaTeX gather environment", snippetType="autosnippet"},
+    s({trig="cases", dscr="A LaTeX cases environment"},
+        fmt( -- The snippet code actually looks like the equation environment it produces.
+            [[
+            \begin{cases}
+            <>
+            \end{cases}
+            ]],
+            { i(1) },
+            { delimiters = "<>" }
+        )
+    ),
+    s({trig="bmatrix", dscr="A LaTeX bmatrix environment"},
+        fmt( -- The snippet code actually looks like the equation environment it produces.
+            [[
+            \begin{bmatrix}
+            <>
+            \end{bmatrix}
+            ]],
+            { i(1) },
+            { delimiters = "<>" }
+        )
+    ),
+    s({trig="$$", dscr="A LaTeX multi-line math environment", snippetType="autosnippet"},
         fmt( 
             [[
             $$
@@ -75,6 +97,20 @@ return {
         fmt(
             "\\sin(<>)",
             { i(1) },
+            { delimiters = "<>" }
+        )
+    ),
+    s({trig="exp", dscr="exponential function"},
+        fmt(
+            "\\exp(<>)<>",
+            { i(1), i(2) },
+            { delimiters = "<>" }
+        )
+    ),
+    s({trig="det", dscr="detirminant of a matrix"},
+        fmt(
+            "\\text{det}(<>)<>",
+            { i(1), i(2) },
             { delimiters = "<>" }
         )
     ),
@@ -190,6 +226,13 @@ return {
             { delimiters = "<>" }
         )
     ),
+    s({trig="set", dscr="latex set"},
+        fmt(
+            "\{<>\}<>",
+            { i(1), i(2) },
+            { delimiters = "<>" }
+        )
+    ),
     s({trig="|->", dscr="mapsto"},
         fmt(
             "\\mapsto <>",
@@ -246,6 +289,20 @@ return {
             { delimiters = "<>" }
         )
     ),
+    s({trig="Re", dscr="Real part"},
+        fmt( 
+            "\\text{Re}(<>)<>",
+            { i(1), i(2) },
+            { delimiters = "<>" }
+        )
+    ),
+    s({trig="Im", dscr="Imaginary part"},
+        fmt( 
+            "\\text{Im}(<>)<>",
+            { i(1), i(2) },
+            { delimiters = "<>" }
+        )
+    ),
     s({trig="bf", dscr="latex boldsymbol", snippetType="autosnippet"},
         fmt( 
             "\\mathbf{<>}",
@@ -287,6 +344,13 @@ return {
             { delimiters = "<>" }
         )
     ),
+    s({trig="CC", dscr="latex Complex symbol", snippetType="autosnippet"},
+        fmt(
+            "\\mathbb{C}<>",
+            { i(1) },
+            { delimiters = "<>" }
+        )
+    ),
     s({trig="QQ", dscr="latex Rationals  numbers symbol", snippetType="autosnippet"},
         fmt( 
             "\\mathbb{Q}<>",
@@ -294,9 +358,37 @@ return {
             { delimiters = "<>" }
         )
     ),
+    s({trig="OO", dscr="Order", snippetType="autosnippet"},
+        fmt( 
+            "\\mathcal{O}(<>)<>",
+            { i(1), i(2) },
+            { delimiters = "<>" }
+        )
+    ),
+    s({trig="LL", dscr="Laplace", snippetType="autosnippet"},
+        fmt( 
+            "\\mathcal{L}(<>)<>",
+            { i(1), i(2) },
+            { delimiters = "<>" }
+        )
+    ),
+    s({trig="FF", dscr="Order", snippetType="autosnippet"},
+        fmt( 
+            "\\mathcal{F}(<>)<>",
+            { i(1), i(2) },
+            { delimiters = "<>" }
+        )
+    ),
     s({trig="nabla", dscr="nabla"},
         fmt( 
             "\\nabla<>",
+            { i(1) },
+            { delimiters = "<>" }
+        )
+    ),
+    s({trig="rad", dscr="rad"},
+        fmt( 
+            "\\text{rad}<>",
             { i(1) },
             { delimiters = "<>" }
         )
