@@ -35,12 +35,11 @@ def generate_makefile(note_name: str) -> None:
 	makefile_template_data = read_file_data_to_list(MAKEFILE_TEMPLATE_PATH)
 	with open(CURRENT_DIR + "/Makefile", "w") as makefile:
 		for line in makefile_template_data:
-			makefile.write(line.replace("template", note_file_name))
+			makefile.write(line.replace("=template", "=" + note_file_name))
 
 
 def create_new_note(note_name: str) -> None:
 	print(f"Creating note: {note_name}")
-	note_file_name, note_file_extension = note_name.split(".")
 
 	# Copy .md template
 	subprocess.run(["cp", MARKDOWN_TEMPLATE_PATH, CURRENT_DIR + f"/{note_name}"])
