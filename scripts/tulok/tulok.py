@@ -99,19 +99,44 @@ def scan_folders_for_yaml_file() -> list:
 
 # Could wrap up this and cd_notes_folder into a generic open
 # some specified path in tmux window function
-def cd_files_folder(course: Course | None):
+def cd_files_folder(course: Course | None, tmux: bool = False):
     if course is not None:
         files_dir = course.find_files_dir()
-        subprocess.run(['tmux', 'new-window', '-c', files_dir])
+
+        if tmux == False:
+            # We do this dance with tmux panes to avoid the problem of not being
+            # able to change the directory of the parent shell running the python program
+            current_window_number = subprocess.check_output(['tmux', 'display-message', '-p', '#I'])\
+                    .decode()\
+                    .strip('\n')
+            subprocess.run(['tmux', 'new-window', '-c', files_dir])
+            new_window_number = subprocess.check_output(['tmux', 'display-message', '-p', '#I'])\
+                    .decode()\
+                    .strip('\n')
+            subprocess.run(['tmux', 'swap-window', '-s', new_window_number, '-t', current_window_number])
+            subprocess.run(['tmux', 'kill-pane'])
+        else:
+            subprocess.run(['tmux', 'new-window', '-c', files_dir])
 
 
-def cd_notes_folder(course: Course | None):
+def cd_notes_folder(course: Course | None, tmux: bool = False):
     if course is not None:
         notes_dir = course.find_notes_dir()
         if notes_dir is not None:
-            subprocess.run(['tmux', 'new-window', '-c', notes_dir])
-        else:
-            print('Notes directory not found...')
+            if tmux == False:
+                # We do this dance with tmux panes to avoid the problem of not being
+                # able to change the directory of the parent shell running the python program
+                current_window_number = subprocess.check_output(['tmux', 'display-message', '-p', '#I'])\
+                        .decode()\
+                        .strip('\n')
+                subprocess.run(['tmux', 'new-window', '-c', notes_dir])
+                new_window_number = subprocess.check_output(['tmux', 'display-message', '-p', '#I'])\
+                        .decode()\
+                        .strip('\n')
+                subprocess.run(['tmux', 'swap-window', '-s', new_window_number, '-t', current_window_number])
+                subprocess.run(['tmux', 'kill-pane'])
+            else:
+                subprocess.run(['tmux', 'new-window', '-c', notes_dir])
 
 
 def open_url(course: Course):
@@ -139,6 +164,7 @@ def prompt_menu_1_courses(courses: list[Course]) -> Course | None:
     color = ''
     exit_var = False
     find_var = False
+
     courses_to_prompt = list(filter(lambda course: course.active == True, courses))
     
     for index, course in enumerate(courses_to_prompt):
@@ -155,7 +181,6 @@ def prompt_menu_1_courses(courses: list[Course]) -> Course | None:
                 color = Color.BLUE
             case _:
                 color = ''
-
         print(color + f'{index + 1}. {course.code} {course.title}' + Color.END)
 
     print('Press q to exit')
@@ -192,20 +217,29 @@ def prompt_menu_1_courses(courses: list[Course]) -> Course | None:
 def prompt_menu_2_courses(course: Course):
     selection= 0
     exit_var = False
+    new_tmux_pane = False
 
     print('Select operation:')
-    print('1. cd Files (new tmux window)')
-    print('2. cd Notes (new tmux window)')
+    print('1. cd Files')
+    print('2. cd Notes')
     print('3. Open Brightspace')
 
     print('Press q to exit')
+    print('Press t to toggle tmux window properties')
+    print(f'Open in new tmux window? {Color.RED}{new_tmux_pane}{Color.END} ', end='\r')
 
     while True:
         try:
             selection = getch.getch()
             if selection == 'q':
-                print('Exiting...')
+                print('\nExiting...')
                 exit_var = True
+                break
+            if selection == 't':
+                bool_color = Color.RED if new_tmux_pane == True else Color.GREEN
+                new_tmux_pane = not new_tmux_pane
+                print(f'Open in new tmux window? {bool_color}{new_tmux_pane}{Color.END} ', end='\r')
+                continue
             else:
                 selection = int(selection)
             break
@@ -218,9 +252,9 @@ def prompt_menu_2_courses(course: Course):
 
     match selection:
         case 1:
-            cd_files_folder(course)
+            cd_files_folder(course, tmux=new_tmux_pane)
         case 2:
-            cd_notes_folder(course)
+            cd_notes_folder(course, tmux=new_tmux_pane)
         case 3:
             open_url(course)
 
@@ -233,6 +267,7 @@ def main():
         prompt_menu_2_courses(course)
     else:
         print('info.yaml not found')
+
 
 if __name__ == '__main__':
     main()
