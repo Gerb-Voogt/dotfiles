@@ -139,11 +139,15 @@ def cd_notes_folder(course: Course | None, tmux: bool = False):
                 subprocess.run(['tmux', 'new-window', '-c', notes_dir])
 
 
-def open_url(course: Course):
+def open_course_url(course: Course):
     if course.url == '':
         print('Brightspace url not found...')
     else:
         subprocess.run(['firefox', f'{course.url}'])
+
+
+def open_url(url: str):
+    subprocess.run(['firefox', f'{url}'])
 
 
 def find_course() -> Course | None:
@@ -164,6 +168,7 @@ def prompt_menu_1_courses(courses: list[Course]) -> Course | None:
     color = ''
     exit_var = False
     find_var = False
+    other_uni_stuff_var = False
 
     courses_to_prompt = list(filter(lambda course: course.active == True, courses))
     
@@ -185,6 +190,7 @@ def prompt_menu_1_courses(courses: list[Course]) -> Course | None:
 
     print('Press q to exit')
     print('Press f to find a deactivated course')
+    print('Press h for other uni related links')
 
     while True:
         try:
@@ -194,6 +200,8 @@ def prompt_menu_1_courses(courses: list[Course]) -> Course | None:
                 exit_var = True
             elif selection == 'f':
                 find_var = True
+            elif selection == 'h':
+                other_uni_stuff_var = True
             else:
                 selection = int(selection)
             break
@@ -206,8 +214,13 @@ def prompt_menu_1_courses(courses: list[Course]) -> Course | None:
     # that right now
     if exit_var:
         sys.exit()
+
     elif find_var:
         course = find_course()
+
+    elif other_uni_stuff_var:
+        prompt_menu_3_uni()
+
     else:
         course = courses_to_prompt[selection - 1]
 
@@ -256,13 +269,62 @@ def prompt_menu_2_courses(course: Course):
         case 2:
             cd_notes_folder(course, tmux=new_tmux_pane)
         case 3:
-            open_url(course)
+            open_course_url(course)
+
+
+
+def prompt_menu_3_uni():
+    print('\033c', end='')
+    selection= 0
+    exit_var = False
+
+    print('Select operation:')
+    print('1. Open Webmail')
+    print('2. Open MyTUDelft')
+    print('3. Open TimeTable')
+    print('4. Open Brightspace')
+
+    print('Press q to exit')
+
+    while True:
+        try:
+            selection = getch.getch()
+            if selection == 'q':
+                print('\nExiting...')
+                exit_var = True
+                break
+            else:
+                selection = int(selection)
+            break
+        except:
+            pass
+
+    # Same as the menu 1 case
+    if exit_var == True:
+        sys.exit(1)
+
+    match selection:
+        case 1:
+            open_url('https://webmail.tudelft.nl/')
+        case 2:
+            open_url('https://my.tudelft.nl/')
+        case 3:
+            open_url('https://brightspace.tudelft.nl/')
+        case 4:
+            open_url('https://mytimetable.tudelft.nl/schedule')
+    sys.exit()
 
 
 def main():
+    # Create an empty screen
+    print('\033c', end='')
+
     courses = scan_folders_for_yaml_file()
     print('Select a number:')
     course = prompt_menu_1_courses(courses)
+    
+    # Again create an empty screen
+    print('\033c', end='')
     if course is not None:
         prompt_menu_2_courses(course)
     else:

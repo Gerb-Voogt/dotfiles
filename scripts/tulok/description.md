@@ -1,2 +1,0 @@
-# What is tulok?
-Tulok is a Python script that I use for managing my courses and uni related files. It creates course objects based on some meta-data stored in an info.yaml file in the course description. This yaml file can thne be used to hook into to quickly create new tmux windows for my notes and files and display relevant course info. In a later version I want to build Tulok instead with a tui in Rust but as it stands my skills in Rust are lacking.
