@@ -301,6 +301,7 @@ def prompt_menu_3_uni():
 
     # Same as the menu 1 case
     if exit_var == True:
+        print('\033c', end='')
         sys.exit(1)
 
     match selection:
@@ -312,6 +313,7 @@ def prompt_menu_3_uni():
             open_url('https://brightspace.tudelft.nl/')
         case 4:
             open_url('https://mytimetable.tudelft.nl/schedule')
+    print('\033c', end='')
     sys.exit()
 
 
