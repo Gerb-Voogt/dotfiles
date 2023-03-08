@@ -6,7 +6,6 @@ bindsym $mod+Shift+s exec i3lock -i /home/gerb/themes/wallpapers/the_valley.png 
 
 # Start Dunst for notifications
 exec --no-startup-id dunst
-
 # set the mod key to the alt:
 set $mod Mod1
 
@@ -178,19 +177,20 @@ set $base      #1e1e2e
 set $mantle    #181825
 set $crust     #11111b
 
-client.focused           $pink     $base $text  $rosewater $pink
-client.focused_inactive  $mauve    $base $text  $rosewater $mauve
-client.unfocused         $mauve    $base $text  $rosewater $mauve
+
+client.focused           $pink     $base $text  $rosewater $blue
+client.focused_inactive  $mauve    $base $text  $rosewater $base
+client.unfocused         $mauve    $base $text  $rosewater $base
 client.urgent            $peach    $base $peach $overlay0  $peach
 client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
 client.background        $base
+
 
 # Theming related settings
 exec bash /home/gerb/.config/polybar/launch.sh 
 exec compton
 
 # -------------------
-
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -199,7 +199,6 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 
 bindsym $mod+t mode "resize"
-
 
 # Allow for taking screenshots
 bindsym Print exec maim -s -u | xclip -selection clipboard -t image/png -i
