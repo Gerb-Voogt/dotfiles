@@ -210,3 +210,4 @@ for_window [class="Dunst"] floating enable
 
 # Battery Notificaitions
 exec bash ~/i3-scripts/battery-notify.sh
+exec bash ~/i3-scripts/reminders.sh
