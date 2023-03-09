@@ -281,8 +281,8 @@ def prompt_menu_3_uni():
     print('Select operation:')
     print('1. Open Webmail')
     print('2. Open MyTUDelft')
-    print('3. Open TimeTable')
-    print('4. Open Brightspace')
+    print('3. Open Brightspace')
+    print('4. Open TimeTable')
 
     print('Press q to exit')
 

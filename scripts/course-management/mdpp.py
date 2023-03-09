@@ -8,10 +8,12 @@
 # -------------------------------------
 import sys
 import os
+import argparse
 
 
 class MarkdownFile:
-    def __init__(self, lines_from_file: list[str]):
+    def __init__(self, lines_from_file: list[str], name: str):
+        self._name = name
         self._lines = lines_from_file
         if len(self._lines) < 1:
             raise Exception("File does not contain data")
@@ -67,8 +69,12 @@ class MarkdownFile:
                 self._lines[i] = self._lines[i].strip('>')
 
 
-    def write_file(self, file_name = 'tmp.md'):
-        with open(file_name, 'w') as fb:
+    def write_file(self, file_name = None):
+        if file_name is not None:
+            target = file_name + '.md.p'
+        else:
+            target = self._name + '.md.p'
+        with open(target, 'w') as fb:
             for line in self._lines:
                 fb.write(line)
 
@@ -110,11 +116,21 @@ def main():
 
     dir = os.getcwd()
     input_file_data = read_from_file(dir + f'/{input_file}')
-    data_parsed = MarkdownFile(input_file_data)
+    data_parsed = MarkdownFile(input_file_data, input_file_name)
     data_parsed.write_file()
 
 
 
 if __name__ == "__main__":
-    main()
+	# Define options for cli arguments
+	parser = argparse.ArgumentParser(
+			prog = 'mdpp',
+			description = 'MarkDown PreProcessor to maintain compatability between LaTeX compiled notes via pandoc and Obsidian flavoured Markdown')
+	parser.add_argument('-c', '--concat', action = 'store_true')
+	parser.add_argument('-o', '--output', action = 'store_true')
+	parser.add_argument('filenames') # Look into allowing this to be variable length
+	args = parser.parse_args()
+	print(args.filenames, args.concat, args.output)
+
+	main()
     
