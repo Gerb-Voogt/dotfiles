@@ -40,6 +40,17 @@ return {
             { delimiters = "<>" }
         )
     ),
+    s({trig="cases", dscr="A LaTeX cases environment"},
+        fmt( -- The snippet code actually looks like the equation environment it produces.
+            [[
+            \begin{cases}
+            <>
+            \end{cases}
+            ]],
+            { i(1) },
+            { delimiters = "<>" }
+        )
+    ),
     s({trig="$$", dscr="A LaTeX gather environment", snippetType="autosnippet"},
         fmt( 
             [[
@@ -73,6 +84,13 @@ return {
         fmt( 
             "\\lim_{<>}",
             { i(1) },
+            { delimiters = "<>" }
+        )
+    ),
+    s({trig="func", dscr="function definition"},
+        fmt( 
+            "<> : <> \to <>",
+            { i(1), i(2), i(3) },
             { delimiters = "<>" }
         )
     ),
@@ -188,7 +206,7 @@ return {
             { delimiters = "<>" }
         )
     ),
-    s({trig="in", dscr="latex in symbol"},
+    s({trig="inn", dscr="latex in symbol", type="autosnippet"},
         fmt(
             "\\in <>",
             { i(1) },
@@ -643,7 +661,7 @@ return {
         }
       )
     ),
-    s({trig = '([%a%)%]%}])nn', regTrig = true, wordTrig = false, snippetType="autosnippet"},
+    s({trig = '([%a%)%]%}])nn', regTrig = true, wordTrig = false, snippetType="autosnippet", priority=100},
       fmta(
         "<>_{<>}",
         {
