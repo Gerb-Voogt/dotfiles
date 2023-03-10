@@ -2,12 +2,19 @@
 Collection of personal dotfiles and configurations scripts for running my System
 
 setup:
+
 Distro: KDE Neon
+
 Window manager: i3wm, polybar
+
 Terminal: kitty with zsh, tmux, starship
+
 app launcher: Rofi
+
 editor: neovim
+
 pdf viewer: zathura
+
 notifications: dunst
 
 # Scripts
