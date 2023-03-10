@@ -206,7 +206,7 @@ return {
             { delimiters = "<>" }
         )
     ),
-    s({trig="inn", dscr="latex in symbol", type="autosnippet"},
+    s({trig="inn", dscr="latex in symbol", snippetType="autosnippet"},
         fmt(
             "\\in <>",
             { i(1) },
