@@ -21,7 +21,7 @@ font pango:JetbrainsMono Nerd Font 16
 new_window pixel 1
 
 # You can also use any non-zero value if you'd like to have a border
-default_border pixel 0
+default_border pixel 1
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -177,9 +177,8 @@ set $base      #1e1e2e
 set $mantle    #181825
 set $crust     #11111b
 
-
-client.focused           $pink     $base $text  $rosewater $blue
-client.focused_inactive  $mauve    $base $text  $rosewater $base
+client.focused           $pink     $base $text  $surface0 $surface0
+client.focused_inactive  $mauve    $base $text  $blue $base
 client.unfocused         $mauve    $base $text  $rosewater $base
 client.urgent            $peach    $base $peach $overlay0  $peach
 client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
@@ -208,6 +207,6 @@ for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 for_window [class="Dunst"] floating enable
 
-# Battery Notificaitions
+# Notifications
 exec bash ~/i3-scripts/battery-notify.sh
 exec bash ~/i3-scripts/reminders.sh
