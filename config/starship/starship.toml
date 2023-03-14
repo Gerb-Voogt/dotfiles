@@ -17,7 +17,7 @@ disabled = true
 
 [directory]
 truncation_length = 1
-truncation_symbol = ' /'
+truncation_symbol = ' → '
 style = 'bold blue'
 
 [git_status]
