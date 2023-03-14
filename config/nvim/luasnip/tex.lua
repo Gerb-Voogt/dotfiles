@@ -89,7 +89,7 @@ return {
     ),
     s({trig="func", dscr="function definition"},
         fmt( 
-            "<> : <> \to <>",
+            "<> : <> \\to <>",
             { i(1), i(2), i(3) },
             { delimiters = "<>" }
         )
