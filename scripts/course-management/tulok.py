@@ -3,6 +3,7 @@ import os
 import sys
 import yaml
 import getch
+import re
 import subprocess
 from dataclasses import dataclass
 
@@ -44,7 +45,7 @@ class Color:
    CYAN = '\033[96m'
    DARKCYAN = '\033[36m'
    BLUE = '\033[94m'
-   GREEN = '\033[92m'
+   GREEN = '\033[36m'
    YELLOW = '\033[93m'
    RED = '\033[91m'
    BOLD = '\033[1m'
@@ -174,7 +175,7 @@ def prompt_menu_1_courses(courses: list[Course]) -> Course | None:
     
     for index, course in enumerate(courses_to_prompt):
         # Extract course code
-        course_code_prefix = course.code[0:2]
+        course_code_prefix = re.findall('[A-Z]+', course.code)[0]
 
         # Set color based on faculty of the course
         match course_code_prefix:
@@ -184,6 +185,10 @@ def prompt_menu_1_courses(courses: list[Course]) -> Course | None:
                 color = Color.PURPLE
             case 'SC':
                 color = Color.BLUE
+            case 'CSE' | 'TI' | 'CS':
+                color = Color.CYAN
+            case 'CESE' | 'EE':
+                color = Color.RED
             case _:
                 color = ''
         print(color + f'{index + 1}. {course.code} {course.title}' + Color.END)
