@@ -49,6 +49,8 @@ class MarkdownFile:
                 'definition': 'defn',
                 'Question': 'quest',
                 'question': 'quest',
+                'Proof': 'proof',
+                'proof': 'proof',
                 }
         block_line_count = 0
         block_type = ''
