@@ -5,12 +5,12 @@ export ZSH="$HOME/.oh-my-zsh"
 set bell-style none
 ZSH_THEME=""
 
-
-plugins=(git zsh-syntax-highlighting)
-
-
+plugins=(
+	git 
+	zsh-syntax-highlighting 
+	zsh-autosuggestions
+)
 source $ZSH/oh-my-zsh.sh
-
 
 # Custom shortcuts
 bindkey -s '^o' 'nvim $(pf)\n'
@@ -28,7 +28,4 @@ alias bat="batcat"
 alias ls="exa"
 alias pf="fzf --preview 'batcat --color=always --style=numbers --line-range=:500 {}'"
 
-#[ -f "/home/gerb/.ghcup/env" ] && source "/home/gerb/.ghcup/env" # ghcup-env
 [ -f "/home/gerb/.ghcup/env" ] && source "/home/gerb/.ghcup/env" # ghcup-env
-
-
