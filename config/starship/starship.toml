@@ -5,7 +5,7 @@ add_newline = false
 format = '[ ⟶ ](bold blue)$all'
 
 [character] 
-success_symbol = '[❯](bold purple)' 
+success_symbol = '[✗](bold purple)' 
 
 [package]
 disabled = true
@@ -54,9 +54,9 @@ disabled = false
 symbol = ' '
 
 [rlang]
-disabled = false
 symbol = 'R '
+disabled = false
 
 [php]
-disabled = false
 symbol = ' '
+disabled = false
