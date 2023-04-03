@@ -424,8 +424,15 @@ cmp.setup {
   },
   mapping = cmp.mapping.preset.insert {
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-u>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete {},
+    ['<C-Tab>'] = cmp.mapping(function(fallback)
+      if cmp.visible() and luasnip.jumpable() then
+        luasnip.jump()
+      else
+        fallback()
+      end
+    end, {'i', 's'}),
     ['<CR>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
@@ -459,3 +466,8 @@ require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/luasnip/"})
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
 vim.opt.guicursor = ""
+vim.opt.scrolloff = 8
+vim.o.wrap = false
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+
