@@ -29,12 +29,34 @@ return {
             { condition = in_mathzone}
         )
     ),
+    s({trig="align*", dscr="A LaTeX align* environment"},
+        fmta( -- The snippet code actually looks like the equation environment it produces.
+            [[
+              \begin{align*}
+                  <>
+              \end{align*}
+            ]],
+            { i(1), },
+            { condition = in_mathzone}
+        )
+    ),
     s({trig="gather", dscr="A LaTeX gather environment"},
         fmt( -- The snippet code actually looks like the equation environment it produces.
             [[
             \begin{gather}
             <>
             \end{gather}
+            ]],
+            { i(1) },
+            { delimiters = "<>" }
+        )
+    ),
+    s({trig="gather*", dscr="A LaTeX gather* environment"},
+        fmt( -- The snippet code actually looks like the equation environment it produces.
+            [[
+            \begin{gather*}
+            <>
+            \end{gather*}
             ]],
             { i(1) },
             { delimiters = "<>" }
