@@ -14,10 +14,10 @@ source $ZSH/oh-my-zsh.sh
 
 # Custom shortcuts
 bindkey -s '^o' 'nvim $(pf)\n'
-bindkey -s '^f' 'fzfcd\n'
 bindkey -s '^p' 'insect\n'
 bindkey -s '^t' 'tulok\n'
-bindkey -s '^h' 'cd ~/uni\n fzfcd\n'
+# bindkey -s '^f' 'fzfcd\n'
+bindkey -s '^f' 'cd ~/uni\n fzfcd\n'
 
 # Exports
 export BAT_THEME="Catppuccin-mocha"
