@@ -1,8 +1,8 @@
 exec feh --bg-scale --zoom fill /home/gerb/themes/wallpapers/anime-wallpaper-01.jpg
 
 # Set lockscreen
-exec xss-lock --transfer-sleep-lock -- i3lock -i /home/gerb/themes/wallpapers/the_valley.png --nofork
-bindsym $mod+Shift+s exec i3lock -i /home/gerb/themes/wallpapers/the_valley.png --nofork
+exec xss-lock --transfer-sleep-lock betterlockscreen -l 
+bindsym $mod+Shift+s exec betterlockscreen -l
 
 # Start Dunst for notifications
 exec --no-startup-id dunst
@@ -115,6 +115,7 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
+# set $ws1 "1"
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
@@ -180,10 +181,10 @@ set $base      #1e1e2e
 set $mantle    #181825
 set $crust     #11111b
 
-client.focused           $base     $base $text  $surface0 $blue
-client.focused_inactive  $base    $base $text  $blue $base
-client.unfocused         $base    $base $text  $rosewater $base
-client.urgent            $peach    $base $peach $overlay0  $peach
+client.focused           $blue $blue $text $blue $blue
+client.focused_inactive  $blue $blue $text $blue $base
+client.unfocused         $base $base $text $rosewater $base
+client.urgent            $peach $base $peach $overlay0  $peach
 client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
 client.background        $base
 
