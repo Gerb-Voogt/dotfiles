@@ -479,3 +479,4 @@ vim.o.shiftwidth = 4
 
 -- Configuring slime
 vim.g.slime_target = "tmux"
+vim.keymap.set("n", "<c-c><c-x>", "<cmd>%SlimeSend<cr>")
