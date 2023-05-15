@@ -43,7 +43,7 @@ symbol = ' '
 
 [c]
 disabled = false
-symbol = 'C '
+symbol = ' '
 style = 'bold cyan'
 
 [golang]
@@ -55,7 +55,7 @@ disabled = false
 symbol = ' '
 
 [rlang]
-symbol = 'R '
+symbol = ' '
 disabled = false
 
 [php]
