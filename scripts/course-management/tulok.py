@@ -41,16 +41,33 @@ class Course:
 
 
 class Color:
-   PURPLE = '\033[95m'
-   CYAN = '\033[96m'
-   DARKCYAN = '\033[36m'
-   BLUE = '\033[94m'
-   GREEN = '\033[36m'
-   YELLOW = '\033[93m'
-   RED = '\033[91m'
-   BOLD = '\033[1m'
-   UNDERLINE = '\033[4m'
-   END = '\033[0m'
+
+    BLACK = "\u001b[30m"
+    RED = "\u001b[31m"
+    GREEN = "\u001b[32m"
+    YELLOW = "\u001b[33m"
+    BLUE = "\u001b[34m"
+    PURPLE = "\u001b[35m"
+    CYAN = "\u001b[36m"
+    WHITE = "\u001b[37m"
+
+    BRIGHT_BLACK = "\u001b[30;1m"
+    BRIGHT_RED = "\u001b[31;1m"
+    BRIGHT_GREEN = "\u001b[32;1m"
+    BRIGHT_YELLOW = "\u001b[33;1m"
+    BRIGHT_BLUE = "\u001b[34;1m"
+    BRIGHT_PURPLE = "\u001b[35;1m"
+    BRIGHT_CYAN = "\u001b[36;1m"
+    BRIGHT_WHITE = "\u001b[37;1m"
+    # PURPLE = '\033[95m'
+    # CYAN = '\033[96m'
+    # DARKCYAN = '\033[36m'
+    # BLUE = '\033[94m'
+    # GREEN = '\033[36m'
+    # YELLOW = '\033[93m'
+    # RED = '\033[91m'
+
+    END = '\033[0m'
 
 
 def read_yaml_file(path_to_file: str) -> dict | None:
@@ -180,15 +197,17 @@ def prompt_menu_1_courses(courses: list[Course]) -> Course | None:
         # Set color based on faculty of the course
         match course_code_prefix:
             case 'WB' | 'ME':
-                color = Color.YELLOW
+                color = Color.BRIGHT_YELLOW
             case 'AM' | 'TW' | 'WI':
-                color = Color.PURPLE
+                color = Color.BRIGHT_PURPLE
             case 'SC':
-                color = Color.BLUE
+                color = Color.BRIGHT_BLUE
             case 'CSE' | 'TI' | 'CS':
-                color = Color.CYAN
+                color = Color.BRIGHT_CYAN
             case 'CESE' | 'EE':
-                color = Color.RED
+                color = Color.BRIGHT_RED
+            case 'RO':
+                color = Color.BRIGHT_GREEN
             case _:
                 color = ''
         print(color + f'{index + 1}. {course.code} {course.title}' + Color.END)
