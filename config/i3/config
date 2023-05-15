@@ -241,6 +241,7 @@ for_window [class="Dunst"] floating enable
 # for_window [title="Figure"] floating enable
 for_window [class="matplotlib"] floating enable
 for_window [class="gksqt"] floating enable
+for_window [class="MATLAB"] floating enable
 
 # Notifications
 exec bash ~/i3-scripts/battery-notify.sh
