@@ -16,6 +16,7 @@ source $ZSH/oh-my-zsh.sh
 bindkey -s '^o' 'nvim $(pf)\n'
 bindkey -s '^p' 'insect\n'
 bindkey -s '^t' 'tulok\n'
+bindkey -s '^g' 'gitui\n'
 # bindkey -s '^f' 'fzfcd\n'
 bindkey -s '^f' 'cd ~/uni\n fzfcd\n'
 
