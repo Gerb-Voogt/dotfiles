@@ -14,6 +14,9 @@ using OhMyREPL
 using Crayons
 using OhMyREPL: Passes.SyntaxHighlighter
 
+# Turn off bracket matching as it fucks with Slime in vim
+enable_autocomplete_brackets(false)
+
 scheme = SyntaxHighlighter.ColorScheme()
 
 SyntaxHighlighter.symbol!(scheme, Crayon(foreground=(242, 205, 205)))
