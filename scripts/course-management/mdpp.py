@@ -55,6 +55,8 @@ class MarkdownFile:
                 'derivation': 'derivation',
                 'Note': 'note',
                 'note': 'note',
+                'Example': 'example',
+                'example': 'example',
                 }
         block_line_count = 0
         block_type = ''
