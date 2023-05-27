@@ -51,6 +51,10 @@ class MarkdownFile:
                 'question': 'quest',
                 'Proof': 'proof',
                 'proof': 'proof',
+                'Derivation': 'derivation',
+                'derivation': 'derivation',
+                'Note': 'note',
+                'note': 'note',
                 }
         block_line_count = 0
         block_type = ''
