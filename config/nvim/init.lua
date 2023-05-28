@@ -154,6 +154,12 @@ require('lazy').setup({
 
   -- REPL driven workflow from vim
   'jpalardy/vim-slime',
+  {
+    'stevearc/oil.nvim',
+    opts = {},
+    -- Optional dependencies
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+  },
 
 }, {})
 
