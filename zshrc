@@ -24,6 +24,9 @@ bindkey -s '^f' 'cd ~/uni\n fzfcd\n'
 export BAT_THEME="Catppuccin-mocha"
 eval "$(starship init zsh)"
 
+export PATH="$HOME/.tmuxifier/bin:$PATH"
+export EDITOR="nvim"
+
 # Custom aliases
 alias bat="batcat"
 alias ls="exa"
