@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+if [[ $1 == "-w" ]]; then
+	query="window"
+else
+	query="session"
+fi
+
+if [[ $query == "session" ]]; then
+	selected=$(tmux list-sessions | awk '{print $1}' | sed "s/://" | fzf)
+	tmux switch-client -t $selected
+fi
+if [[ $query == "window" ]]; then
+	selected=$(tmux list-windows | fzf)
+	window_num=$(awk '{print $1}' $selected | sed "s/://")
+	tmux select-window -t $window_num
+fi
+

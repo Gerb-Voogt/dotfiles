@@ -19,6 +19,7 @@ bindkey -s '^g' 'gitui\n'
 bindkey -s '^f' 'fzfcd ~/uni\n'
 bindkey -s '^d' 'fzfcd\n'
 bindkey -s '^n' 'tsn\n'
+bindkey -s '^e' 'tmux-fzfer\n'
 
 # Exports
 export BAT_THEME="Catppuccin-mocha"
