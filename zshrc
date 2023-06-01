@@ -18,7 +18,7 @@ bindkey -s '^t' 'tulok\n'
 bindkey -s '^g' 'gitui\n'
 bindkey -s '^f' 'fzfcd ~/uni\n'
 bindkey -s '^d' 'fzfcd\n'
-bindkey -s '^b' 'tsn\n'
+bindkey -s '^n' 'tsn\n'
 
 # Exports
 export BAT_THEME="Catppuccin-mocha"
