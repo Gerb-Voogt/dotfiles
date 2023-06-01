@@ -17,8 +17,8 @@ bindkey -s '^o' 'nvim $(pf)\n'
 bindkey -s '^p' 'insect\n'
 bindkey -s '^t' 'tulok\n'
 bindkey -s '^g' 'gitui\n'
-# bindkey -s '^f' 'fzfcd\n'
 bindkey -s '^f' 'fzfcd\n'
+bindkey -s '^b' 'tsn\n'
 
 # Exports
 export BAT_THEME="Catppuccin-mocha"
