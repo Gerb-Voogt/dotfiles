@@ -18,9 +18,9 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 # Custom function for fuzzy finding and CDing to folders
 fzfcd() {
     if [[ $# -eq 1 ]]; then
-        selected=$1
+        selected=$(find $1 -type d -not -path "*/.git/*" | fzf)
     else
-        selected=$(find ~/uni -type d -not -path "*/.git/*" | fzf)
+        selected=$(find ./ -type d -not -path "*/.git/*" | fzf)
     fi
 
     if [[ -n $selected ]]; then

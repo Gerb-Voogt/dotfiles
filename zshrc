@@ -13,11 +13,11 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # Custom shortcuts
-bindkey -s '^o' 'nvim $(pf)\n'
 bindkey -s '^p' 'insect\n'
 bindkey -s '^t' 'tulok\n'
 bindkey -s '^g' 'gitui\n'
-bindkey -s '^f' 'fzfcd\n'
+bindkey -s '^f' 'fzfcd ~/uni\n'
+bindkey -s '^d' 'fzfcd\n'
 bindkey -s '^b' 'tsn\n'
 
 # Exports
