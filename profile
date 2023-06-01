@@ -17,13 +17,15 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # Custom function for fuzzy finding and CDing to folders
 fzfcd() {
-if [ $# -eq 0 ]
-  then
-    cd $(find . -type d -print | fzf)
-    
+    if [[ $# -eq 1 ]]; then
+        selected=$1
     else
-        cd $(find "$1" -type d -print | fzf)
-fi
+        selected=$(find ~/uni -type d -not -path "*/.git/*" | fzf)
+    fi
+
+    if [[ -n $selected ]]; then
+        cd $selected
+    fi
 }
 
 # Custom aliases
