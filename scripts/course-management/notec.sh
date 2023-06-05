@@ -49,6 +49,9 @@ shift $((OPTIND - 1))
 
 
 if [[ $# -gt 0 ]]; then
+	if [[ $# -eq 1 ]]; then
+		output_file_name=${@/md/pdf}
+	fi
 	# Check whether the files listed exists, if not raise an error
 	# if yes combine them all to a big output file and pre-process that with 
 	# mdpp and compile to pdf using pandoc
