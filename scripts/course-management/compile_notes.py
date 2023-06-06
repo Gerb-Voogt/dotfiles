@@ -112,7 +112,7 @@ def main():
         if course.find_notes_dir() is not None:
             courses_list.append(f"{course.code}: {course.title}")
 
-    _, selected_course = rofi("Select a Course", courses_list)
+    _, selected_course = rofi("  Select a Course", courses_list)
 
     if selected_course == "":
         sys.exit()
