@@ -5,7 +5,7 @@ output_file_name="output.pdf"
 author="Gerb"
 document_title=0
 
-while getopts "a:t:o:hd" opt; do
+while getopts "a:t:o:hdc" opt; do
 	case $opt in
 		o) # Rename output file
 			output_file_name=$OPTARG
@@ -18,6 +18,9 @@ while getopts "a:t:o:hd" opt; do
 			;;
 		a) # Add author and title details to compilation
 			author=$OPTARG
+			;;
+		c) # Generate a Document TOC
+			generate_toc="true"
 			;;
 		h) # Print help
 			print_help="true"
@@ -43,6 +46,11 @@ if [[ $document_title != 0 ]]; then
 	echo "\\author{$author}" >> main.md
 	echo "\\date{\\today}" >> main.md
 	echo "\\maketitle" >> main.md
+fi
+
+if [[ $generate_toc != 0 ]]; then
+	echo "\\tableofcontents" >> main.md
+	echo "\\newpage" >> main.md
 fi
 
 shift $((OPTIND - 1))
