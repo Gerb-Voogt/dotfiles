@@ -25,3 +25,4 @@ def rofi(prompt, options, rofi_args=[], fuzzy=True):
         index = -1
 
     return index, selected
+

@@ -4,6 +4,7 @@ working_dir=$(pwd)
 output_file_name="output.pdf"
 author="Gerb"
 document_title=0
+generate_toc=0
 
 while getopts "a:t:o:hdc" opt; do
 	case $opt in
@@ -81,8 +82,7 @@ fi
 
 mdpp main.md
 pandoc main.md.p -H ~/uni/templates/markdown-pdf/header.tex -o $output_file_name
-rm main.md.p
 
 if [[ -z $delete_main_md ]]; then
-	rm main.md
+	rm main.md main.md.p
 fi

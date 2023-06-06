@@ -9,7 +9,7 @@ from dataclasses import dataclass
 
 # Global Variable, change later to pull these from a config file
 MAIN_COURSES_DIR = '/home/gerb/uni/courses'
-NOTES_DIR = '/home/gerb/uni/Vault'
+NOTES_DIR = '/home/gerb/uni/Vault-MSc'
 FILES_DIR = '/home/gerb/uni/courses'
 
 @dataclass
