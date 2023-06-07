@@ -6,57 +6,10 @@ import yaml
 import re
 from dataclasses import dataclass
 from rofi import rofi
-from tulok import Course, Color
+from tulok import Course, Color, create_course_object_from_yaml_file, read_yaml_file, scan_folders_for_yaml_file
 
-MAIN_COURSES_DIR = '/home/gerb/uni/courses'
 NOTES_DIR = '/home/gerb/uni/Vault-MSc'
 FILES_DIR = '/home/gerb/uni/courses'
-
-
-def read_yaml_file(path_to_file: str) -> dict | None:
-    target_file = path_to_file + '/info.yaml'
-
-    try:
-        with open(target_file, 'r') as file_buffer:
-            data = yaml.load(file_buffer, Loader = yaml.loader.SafeLoader)
-            return data
-
-    except FileNotFoundError:
-        # print(f"info.yaml not found at {path_to_file}")
-        pass
-
-
-
-def create_course_object_from_yaml_file(path_to_course: str) -> Course | None:
-    data = read_yaml_file(path_to_course)
-    if data is not None:
-        course = Course(
-                data['title'],
-                data['short'],
-                data['code'],
-                data['url'],
-                data['year'],
-                data['quarter'],
-                data['active'],
-                )
-        return course
-    else:
-        return None
-
-
-def scan_folders_for_yaml_file() -> list:
-    course_objects = []
-    course_code_prefix = os.listdir(MAIN_COURSES_DIR)
-    for prefix in course_code_prefix:
-        courses_dir = MAIN_COURSES_DIR + f'/{prefix}'
-        courses = os.listdir(courses_dir)
-
-        for course in courses:
-            path_to_course = courses_dir + f'/{course}'
-            course_data = create_course_object_from_yaml_file(path_to_course)
-            if course_data is not None:
-                course_objects.append(course_data)
-    return course_objects
 
 
 def compile_single_note(note_path: str, note_name: str):
@@ -77,16 +30,16 @@ def compile_multiple_notes(note_path: str, note_names: list, course: Course):
 
 def compile_all_notes(note_path: str, note_names: list, course: Course):
     title = f"{course.code}: {course.title} Lecture Notes {course.year}"
-    pdf_name = f'{course.code}-notes.pdf' 
-    command = ['notec', '-o', pdf_name, '-t', title, '-c', '-d']
+    pdf_name = f'{course.code}-notes-all.pdf' 
+    command = ['notec', '-o', pdf_name, '-t', title, '-c']
     for i in note_names:
         command.append(i)
     subprocess.run(command, cwd=note_path)
 
 
 def delete_notes(note_path, course: Course):
-    match_group_1 = re.compile(course.code + "+[-_][0-9]+.pdf")
-    match_group_2 = re.compile(course.code + "+[-_][0-9]+[-_][0-9]+.pdf")
+    match_group_1 = re.compile(course.code + "-notes" + "+[-_][0-9]+.pdf")
+    match_group_2 = re.compile(course.code + "-notes" + "+[-_][0-9]+[-_][0-9]+.pdf")
 
     names = []
     for _, _, filenames in os.walk(note_path):
@@ -98,7 +51,7 @@ def delete_notes(note_path, course: Course):
             if name_2 is not None:
                 names.append(name_2.group())
 
-    command = f"rm {course.code}-notes.pdf"
+    command = f"rm {course.code}-notes-all.pdf"
     for i in names:
         command += f" {i}"
     subprocess.run(command.split(), cwd=note_path)
@@ -118,7 +71,7 @@ def main():
         sys.exit()
 
     course_code = selected_course.split(":")[0]
-    match_group = re.compile(course_code + "+[-_][0-9]+.md")
+    match_group = re.compile(course_code + "-notes" + "+[-_][0-9]+.md")
     names = []
 
     for course in courses:
