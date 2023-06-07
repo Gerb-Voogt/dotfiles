@@ -157,6 +157,19 @@ def cd_notes_folder(course: Course | None, tmux: bool = False):
                 subprocess.run(['tmux', 'new-window', '-c', notes_dir])
 
 
+def open_tmux_session(course: Course, location: str):
+    match location:
+        case "notes":
+            if course.find_notes_dir() is not None:
+                command = f"tsn {course.find_notes_dir()}"
+                subprocess.run(command.split())
+        case "files":
+            command = f"tsn {course.find_files_dir()}"
+            subprocess.run(command.split())
+        case _:
+            sys.exit(1)
+
+
 def open_course_url(course: Course):
     if course.url == '':
         print('Brightspace url not found...')
@@ -257,8 +270,8 @@ def prompt_menu_2_courses(course: Course):
     new_tmux_pane = False
 
     print('Select operation:')
-    print('1. cd Files')
-    print('2. cd Notes')
+    print('1. Open Files')
+    print('2. Open Notes')
     print('3. Open Brightspace')
 
     print('Press q to exit')
@@ -289,9 +302,11 @@ def prompt_menu_2_courses(course: Course):
 
     match selection:
         case 1:
-            cd_files_folder(course, tmux=new_tmux_pane)
+            # cd_files_folder(course, tmux=new_tmux_pane)
+            open_tmux_session(course, "files")
         case 2:
-            cd_notes_folder(course, tmux=new_tmux_pane)
+            # cd_notes_folder(course, tmux=new_tmux_pane)
+            open_tmux_session(course, "notes")
         case 3:
             open_course_url(course)
 
