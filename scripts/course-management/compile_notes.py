@@ -22,7 +22,7 @@ def compile_multiple_notes(note_path: str, note_names: list, course: Course):
     for note_name in note_names:
         note_numbers.append(note_name.split("-")[-1].split(".")[0])
 
-    command = f"notec -o {course.code}-{note_numbers[0]}-{note_numbers[-1]}.pdf"
+    command = f"notec -o {course.code}-notes-{note_numbers[0]}-{note_numbers[-1]}.pdf"
     for i in note_names:
         command += f" {i}"
     subprocess.run(command.split(), cwd=note_path)
@@ -73,10 +73,14 @@ def main():
     course_code = selected_course.split(":")[0]
     match_group = re.compile(course_code + "-notes" + "+[-_][0-9]+.md")
     names = []
+    course_object = None
 
     for course in courses:
         if course.code == course_code:
             course_object = course
+    
+    if course_object == None:
+        sys.exit()
 
     note_path = course_object.find_notes_dir()
     for _, _, filenames in os.walk(note_path):
@@ -119,8 +123,6 @@ def main():
 
         case _:
             sys.exit()
-
-
 
 
 if __name__ == "__main__":
