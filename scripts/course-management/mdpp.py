@@ -1,4 +1,10 @@
 #!/usr/bin/python3
+# NOTICE:
+# This code is a fucking mess and should be fixed to be written
+# in a non stupid way at some point. This however seems like 
+# a summer project as I do not have time for this right now.
+# I'm not gonna touch this without doing a complete rewrit cause this code somehow
+# works for reasons beyond my understanding.
 # -------------------------------------
 # FLAGS AND OPTIONS
 # -------------------------------------
@@ -42,7 +48,7 @@ class MarkdownFile:
         pass
 
     def _find_blocks(self) -> None:
-        block_types = {
+        block_types = { # Update this to pull these from a config file instead
                 'Theorem': 'theo',
                 'theorem': 'theo',
                 'Definition': 'defn',
@@ -116,11 +122,11 @@ def main():
         input_file_name, input_file_extension = input_file.split(".")
     except:
         print("Input file must be a md file")
-        sys.exit()
+        sys.exit(1)
     
     if input_file_extension != "md":
         print("Input file must be a md file")
-        sys.exit()
+        sys.exit(1)
 
     dir = os.getcwd()
     input_file_data = read_from_file(dir + f'/{input_file}')
@@ -130,15 +136,15 @@ def main():
 
 
 if __name__ == "__main__":
-	# Define options for cli arguments
-	parser = argparse.ArgumentParser(
-			prog = 'mdpp',
-			description = 'MarkDown PreProcessor to maintain compatability between LaTeX compiled notes via pandoc and Obsidian flavoured Markdown')
-	parser.add_argument('-c', '--concat', action = 'store_true')
-	parser.add_argument('-o', '--output', action = 'store_true')
-	parser.add_argument('filenames') # Look into allowing this to be variable length
-	args = parser.parse_args()
-	print(args.filenames, args.concat, args.output)
+    # Define options for cli arguments
+    parser = argparse.ArgumentParser(
+                    prog = 'mdpp',
+                    description = 'MarkDown PreProcessor to maintain compatability between LaTeX compiled notes via pandoc and Obsidian flavoured Markdown')
+    parser.add_argument('-c', '--concat', action = 'store_true')
+    parser.add_argument('-o', '--output', action = 'store_true')
+    parser.add_argument('filenames') # Look into allowing this to be variable length
+    args = parser.parse_args()
+    print(args.filenames, args.concat, args.output)
 
-	main()
+    main()
     
