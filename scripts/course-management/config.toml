@@ -1,5 +1,0 @@
-tilte = "note system config"
-
-[directories]
-makefile_template_path = "/home/gerb/uni/templates/markdown-pdf/Makefile"
-markdown_template_path = "/home/gerb/uni/templates/markdown-pdf/template.md"
