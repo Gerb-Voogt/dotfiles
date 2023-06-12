@@ -1,7 +1,6 @@
 #!/usr/bin/bash
 
 working_dir=$(pwd)
-delete_pdf=0
 
 while getopts "dh" opt; do
 	case $opt in
@@ -37,6 +36,11 @@ if [[ $1 != *.md ]]; then
 fi
 
 note_pdf_name=${1/md/pdf}
+tmux_running=$(pgrep tmux)
+
+if [[ ! -z $tmux_running ]]; then
+	tmux rename-window "Note"
+fi
 
 if [[ ! -f $working_dir/$1 ]]; then
 	echo "File $1 does not exist"
@@ -47,10 +51,17 @@ fi
 
 notec $1
 zathura "$working_dir/$note_pdf_name" &
-nvim -c "autocmd BufWritePost $1 !notec $1" $1
+nvim -c "set wrap" -c "set spell" -c "autocmd BufWritePost $1 !notec $1" $1
 
-pkill -f "$note_pdf_name"
+zathura_process=$(pgrep "$note_pdf_name")
+if [[ -z $zathura_process ]]; then
+	pkill -f "$note_pdf_name"
+fi
 
 if [[ $delete_pdf -eq 1 ]]; then
 	rm $note_pdf_name
+fi
+
+if [[ ! -z $tmux_running ]]; then
+	tmux rename-window "zsh"
 fi
