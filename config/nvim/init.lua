@@ -161,6 +161,8 @@ require('lazy').setup({
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
 
+  'mechatroner/rainbow_csv',
+
 }, {})
 
 -- [[ Setting options ]]
