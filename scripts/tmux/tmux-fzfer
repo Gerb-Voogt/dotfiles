@@ -7,12 +7,25 @@ else
 fi
 
 if [[ $query == "session" ]]; then
+	options=$(echo "open kill-session" | tr ' ' '\n')
+	echo $options
 	selected=$(tmux list-sessions | awk '{print $1}' | sed "s/://" | fzf)
-	tmux switch-client -t $selected
+	selected_option=$(printf "$options" | fzf)
+	echo $selected_option
+
+	if [[ $selected_option == "open" ]]; then
+		tmux switch-client -t $selected
+	elif [[ $selected_option == "kill-session" ]]; then
+		tmux kill-session -t $selected
+	else
+		echo "Something has gone horribly wrong."
+	fi
 fi
 if [[ $query == "window" ]]; then
 	selected=$(tmux list-windows | fzf)
 	window_num=$(awk '{print $1}' $selected | sed "s/://")
 	tmux select-window -t $window_num
 fi
+
+
 
