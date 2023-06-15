@@ -2,22 +2,20 @@
 import sys
 import os
 import subprocess
-import yaml
 import re
-from dataclasses import dataclass
 from rofi import rofi
-from tulok import Course, Color, create_course_object_from_yaml_file, read_yaml_file, scan_folders_for_yaml_file
+from tulok import Course, scan_folders_for_yaml_file
 
 NOTES_DIR = '/home/gerb/uni/Vault-MSc'
 FILES_DIR = '/home/gerb/uni/courses'
 
 
-def compile_single_note(note_path: str, note_name: str):
+def compile_single_note(note_path: str, note_name: str) -> None:
     command = f"notec {note_name}"
     subprocess.run(command.split(), cwd=note_path)
 
 
-def compile_multiple_notes(note_path: str, note_names: list, course: Course):
+def compile_multiple_notes(note_path: str, note_names: list, course: Course) -> None:
     note_numbers = []
     for note_name in note_names:
         note_numbers.append(note_name.split("-")[-1].split(".")[0])
@@ -28,7 +26,7 @@ def compile_multiple_notes(note_path: str, note_names: list, course: Course):
     subprocess.run(command.split(), cwd=note_path)
 
 
-def compile_all_notes(note_path: str, note_names: list, course: Course):
+def compile_all_notes(note_path: str, note_names: list, course: Course) -> None:
     title = f"{course.code}: {course.title} Lecture Notes {course.year}"
     pdf_name = f'{course.code}-notes-all.pdf' 
     command = ['notec', '-o', pdf_name, '-t', title, '-c']
@@ -37,7 +35,7 @@ def compile_all_notes(note_path: str, note_names: list, course: Course):
     subprocess.run(command, cwd=note_path)
 
 
-def delete_notes(note_path, course: Course):
+def delete_notes(note_path, course: Course) -> None:
     match_group_1 = re.compile(course.code + "-notes" + "+[-_][0-9]+.pdf")
     match_group_2 = re.compile(course.code + "-notes" + "+[-_][0-9]+[-_][0-9]+.pdf")
 
@@ -55,6 +53,12 @@ def delete_notes(note_path, course: Course):
     for i in names:
         command += f" {i}"
     subprocess.run(command.split(), cwd=note_path)
+
+
+def open_note(note_path: str, note_name: str) -> None:
+    note_name_pdf = note_name.replace("md", "pdf")
+    command = f"zathura {note_path}/{note_name_pdf}"
+    subprocess.run(command.split(), start_new_session=True)
 
 
 def main():
@@ -90,19 +94,19 @@ def main():
                 names.append(name.group())
     names.sort()
 
-    _, selected = rofi("Compile Notes", ["Compile last note",
-                                         "Compile last 2 notes",
-                                         "Compile all notes",
-                                         "Select specific note to compile",
-                                         "Decompile all course notes"])
+    _, selected = rofi("↳ Select Operation", [
+        "Edit a note",
+        "Open a note",
+        "Compile last note",
+        "Compile last 2 notes",
+        "Compile all notes",
+        "Select specific note to compile",
+        "Decompile all course notes",
+        ])
 
     match selected:
         case "Compile last note":
             note_name = names[-1]
-            compile_single_note(note_path, note_name)
-
-        case "Select specific note to compile":
-            _, note_name = rofi("Select a Note", names)
             compile_single_note(note_path, note_name)
 
         case "Compile last 2 notes":
@@ -117,6 +121,59 @@ def main():
                 compile_single_note(note_path, names[0])
             else:
                 compile_all_notes(note_path, names, course_object)
+
+        case "Select specific note to compile":
+            _, note_name = rofi("↳ Select a Note", names)
+            compile_single_note(note_path, note_name)
+            
+        case "Open a note":
+            prompt = names.copy()
+            if len(names) > 1:
+                prompt.append("Open master note")
+
+            _, selection = rofi("↳ Select a Note", prompt)
+            
+            if selection == "Open master note":
+                pdf_name = f'{course_object.code}-notes-all.pdf'
+                if not os.path.isfile(note_path + "/" + pdf_name):
+                    compile_all_notes(note_path, names, course_object)
+                open_note(note_path, pdf_name)
+
+            elif selection != "":
+                pdf_name = selection.replace("md", "pdf")
+                if not os.path.isfile(note_path + "/" + pdf_name):
+                    compile_single_note(note_path, selection)
+                open_note(note_path, pdf_name)
+
+            else:
+                sys.exit(0)
+
+        case "Edit a note": # This should probably be refactored in it's own function
+            prompt = names.copy()
+            prompt.append("Create next note")
+            _, selection = rofi("↳ Select a Note", prompt)
+
+            note_to_open = None
+            if selection == "Create next note":
+                if len(names) > 0:
+                    split_last_note = names[-1].split("-")
+                    number, _ = split_last_note[-1].split(".")
+                    new_note_number = int(number) + 1
+                    if new_note_number < 10:
+                        note_to_open = f"{course_object.code}-notes-0{new_note_number}.md"
+                    elif new_note_number >= 10:
+                        note_to_open = f"{course_object.code}-notes-{new_note_number}.md"
+                else: # if len(names) = 0, then no notes exist
+                    note_to_open = f"{course_object.code}-notes-01.md"
+            elif selection != "":
+                note_to_open = selection
+            else:
+                sys.exit(0)
+
+            if note_to_open is not None:
+                subprocess.run(["tmux-sessionizer", f"{note_path}"])
+                folder_name = note_path.split("/")[-1]
+                subprocess.run(["tmux", "send-keys", "-t", f"{folder_name:1.1}", "note", " -d", f" {note_to_open}", "Enter"])
 
         case "Decompile all course notes":
             delete_notes(note_path, course_object)
