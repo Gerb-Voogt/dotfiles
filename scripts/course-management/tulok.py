@@ -161,10 +161,10 @@ def open_tmux_session(course: Course, location: str):
     match location:
         case "notes":
             if course.find_notes_dir() is not None:
-                command = f"tsn {course.find_notes_dir()}"
+                command = f"tmux-sessionizer {course.find_notes_dir()}"
                 subprocess.run(command.split())
         case "files":
-            command = f"tsn {course.find_files_dir()}"
+            command = f"tmux-sessionizer {course.find_files_dir()}"
             subprocess.run(command.split())
         case _:
             sys.exit(1)
