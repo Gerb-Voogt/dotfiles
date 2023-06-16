@@ -8,10 +8,8 @@ fi
 
 if [[ $query == "session" ]]; then
 	options=$(echo "open kill-session" | tr ' ' '\n')
-	echo $options
 	selected=$(tmux list-sessions | awk '{print $1}' | sed "s/://" | fzf)
 	selected_option=$(printf "$options" | fzf)
-	echo $selected_option
 
 	if [[ $selected_option == "open" ]]; then
 		tmux switch-client -t $selected
