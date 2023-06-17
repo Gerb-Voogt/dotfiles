@@ -347,6 +347,13 @@ return {
             { delimiters = "<>" }
         )
     ),
+    s({trig="pair", dscr="tansformation pair"},
+        fmt( 
+            "\\xleftrightarrow[]{\\mathcal{<>}}<>",
+            { i(1), i(2) },
+            { delimiters = "<>" }
+        )
+    ),
 
 
     ---------------
