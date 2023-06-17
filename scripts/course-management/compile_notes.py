@@ -27,7 +27,7 @@ def compile_multiple_notes(note_path: str, note_names: list, course: Course) -> 
 
 
 def compile_all_notes(note_path: str, note_names: list, course: Course) -> None:
-    title = f"{course.code}: {course.title} Lecture Notes {course.year}"
+    title = f"{course.code}: {course.title} Lecture Notes ({course.quarter}, {course.year})"
     pdf_name = f'{course.code}-notes-all.pdf' 
     command = ['notec', '-o', pdf_name, '-t', title, '-c']
     for i in note_names:

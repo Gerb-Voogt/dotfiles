@@ -5,8 +5,9 @@ output_file_name="output.pdf"
 author="Gerb"
 document_title=0
 generate_toc=0
+document_date=0
 
-while getopts "a:t:o:hdc" opt; do
+while getopts "a:t:o:m:hdc" opt; do
 	case $opt in
 		o) # Rename output file
 			output_file_name=$OPTARG
@@ -16,6 +17,9 @@ while getopts "a:t:o:hdc" opt; do
 			;;
 		t) # Add title details to compilation
 			document_title=$OPTARG
+			;;
+		m) # Add title details to compilation
+			document_date=$OPTARG
 			;;
 		a) # Add author and title details to compilation
 			author=$OPTARG
@@ -37,15 +41,23 @@ if [[ ! -z $print_help ]]; then
 	echo "-h: Prints the help menu"
 	echo "-a: Sets the document author (not printed if title is not set)"
 	echo "-t: Sets the document title"
+	echo "-m: Sets the document date"
 	echo "-o: Sets the name of the output pdf file"
 	echo "-d: Supress deletion of merged md file"
 	exit 0;
 fi
 
+
 if [[ $document_title != 0 ]]; then
 	echo "\\title{$document_title}" >> main.md
 	echo "\\author{$author}" >> main.md
-	echo "\\date{\\today}" >> main.md
+
+	if [[ $document_date != 0 ]]; then
+		echo "$document_date" >> main.md
+	else
+		echo "\\date{Compilation Date: \\today}" >> main.md
+	fi
+
 	echo "\\maketitle" >> main.md
 fi
 
