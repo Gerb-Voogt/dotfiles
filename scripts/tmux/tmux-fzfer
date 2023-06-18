@@ -1,29 +1,22 @@
 #!/usr/bin/env bash
 
-if [[ $1 == "-w" ]]; then
-	query="window"
+
+options=$(echo "open kill-session rename-session" | tr ' ' '\n')
+selected=$(tmux list-sessions | awk '{print $1}' | sed "s/://" | fzf)
+
+if [[ -z $selected ]]; then
+	exit 0
 else
-	query="session"
-fi
-
-if [[ $query == "session" ]]; then
-	options=$(echo "open kill-session" | tr ' ' '\n')
-	selected=$(tmux list-sessions | awk '{print $1}' | sed "s/://" | fzf)
 	selected_option=$(printf "$options" | fzf)
-
-	if [[ $selected_option == "open" ]]; then
-		tmux switch-client -t $selected
-	elif [[ $selected_option == "kill-session" ]]; then
-		tmux kill-session -t $selected
-	else
-		echo "Something has gone horribly wrong."
-	fi
-fi
-if [[ $query == "window" ]]; then
-	selected=$(tmux list-windows | fzf)
-	window_num=$(awk '{print $1}' $selected | sed "s/://")
-	tmux select-window -t $window_num
 fi
 
-
-
+if [[ $selected_option == "open" ]]; then
+	tmux switch-client -t $selected
+elif [[ $selected_option == "kill-session" ]]; then
+	tmux kill-session -t $selected
+elif [[ $selected_option == "rename-session" ]]; then
+	read -p "Enter new name: " new_session_name
+	tmux rename-session -t $selected $new_session_name
+else
+	exit 0
+fi
