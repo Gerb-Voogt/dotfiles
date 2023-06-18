@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+languages=$(echo "bash c cpp julia latex matlab octave python3 r rust cmake" | tr ' ' '\n')
+core_utils=$(echo "awk git find grep" | tr ' ' '\n')
+
+selected=$(printf "$languages\n$core_utils" | fzf)
+read -p "query: " query
+
+/home/gerb/bin/cht.sh $selected $query | less
+
