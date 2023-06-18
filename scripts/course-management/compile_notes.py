@@ -61,6 +61,20 @@ def open_note(note_path: str, note_name: str) -> None:
     subprocess.run(command.split(), start_new_session=True)
 
 
+def open_lecture_slides_or_pdf(course_path: str) -> None:
+    print(course_path+"/slides")
+
+    _, _, filenames = next(os.walk(course_path+'/slides'))
+    filenames.sort()
+    lecture_slides = [filename.replace("-", " ") for filename in filenames]
+
+    _, selected = rofi(" Select a file", lecture_slides)
+
+    selected = selected.replace(" ", "-")
+    command = f"zathura {course_path}/slides/{selected}"
+    subprocess.Popen(command.split(), start_new_session=True)
+
+
 def main():
     courses = scan_folders_for_yaml_file()
 
@@ -97,6 +111,7 @@ def main():
     _, selected = rofi("↳ Select Operation", [
         "Edit a note",
         "Open a note",
+        "Open lecture slides or pdf",
         "Compile last note",
         "Compile last 2 notes",
         "Compile all notes",
@@ -147,6 +162,9 @@ def main():
 
             else:
                 sys.exit(0)
+
+        case "Open lecture slides or pdf":
+            open_lecture_slides_or_pdf(note_path)
 
         case "Edit a note": # This should probably be refactored in it's own function
             prompt = names.copy()
