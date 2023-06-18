@@ -33,6 +33,6 @@ alias bat="batcat"
 alias ls="exa"
 alias pf="fzf --preview 'batcat --color=always --style=numbers --line-range=:500 {}'"
 alias la="exa -lH"
-alias tm="tmuxifier"
+alias paim="xclip -selection clipboard -t image/png -o >"
 
 [ -f "/home/gerb/.ghcup/env" ] && source "/home/gerb/.ghcup/env" # ghcup-env
