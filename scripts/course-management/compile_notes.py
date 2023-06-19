@@ -70,6 +70,9 @@ def open_lecture_slides_or_pdf(course_path: str) -> None:
 
     _, selected = rofi(" Select a file", lecture_slides)
 
+    if selected == "":
+        sys.exit(0)
+
     selected = selected.replace(" ", "-")
     command = f"zathura {course_path}/slides/{selected}"
     subprocess.Popen(command.split(), start_new_session=True)
