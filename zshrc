@@ -27,6 +27,7 @@ eval "$(starship init zsh)"
 
 export PATH="$HOME/.tmuxifier/bin:$PATH"
 export EDITOR="nvim"
+export OPENAI_API_KEY=$(cat ~/API-keys/gpt)
 
 # Custom aliases
 alias bat="batcat"
