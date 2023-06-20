@@ -4,7 +4,16 @@ languages=$(echo "bash c cpp julia latex matlab octave python3 r rust cmake" | t
 core_utils=$(echo "awk git find grep" | tr ' ' '\n')
 
 selected=$(printf "$languages\n$core_utils" | fzf)
-read -p "query: " query
 
-/home/gerb/bin/cht.sh $selected $query | less
+if [[ -z "$selected" ]]; then # Exit if none selected
+	exit 0
+fi
+
+read -p "query: " query
+if [[ -z "$query" ]]; then # Exit if no query
+	exit 0
+fi
+
+export CHTSH_QUERY_OPTIONS=style=monokai
+cht.sh $selected $query | less
 
