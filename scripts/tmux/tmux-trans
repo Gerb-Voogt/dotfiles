@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+options=$(echo "Definitions nl-en en-nl other" | tr ' ' '\n')
+selected=$(printf "$options" | fzf)
+
+if [[ -z "$selected" ]]; then # Exit if none selected
+	exit 0
+elif [[ "$selected" == "other" ]]; then
+	read -p "Select a language pair (Format to:from)" selected
+fi
+
+read -p "Word or Sentence: " query
+if [[ -z "$query" ]]; then # Exit if no query
+	exit 0
+fi
+
+if [[ "$selected" == "Definitions" ]]; then
+	trans -v "$query"
+elif [[ ! -z "$selected" ]]; then
+	trans -v "${selected/-/:}" "$query"
+else
+	echo "Something has gone wrong."
+	exit 1
+fi
+
+
