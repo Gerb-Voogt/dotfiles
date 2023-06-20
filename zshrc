@@ -28,6 +28,7 @@ eval "$(starship init zsh)"
 export PATH="$HOME/.tmuxifier/bin:$PATH"
 export EDITOR="nvim"
 export OPENAI_API_KEY=$(cat ~/API-keys/gpt)
+export PATH=/usr/local/cuda-12.1/bin${PATH:+:${PATH}} # Setup cuda toolkit
 
 # Custom aliases
 alias bat="batcat"
