@@ -39,6 +39,7 @@ bindsym $mod+Shift+d exec rofi -show window
 bindsym $mod+Control+d exec rofi -show drun
 bindsym $mod+Control+p exec /home/gerb/i3-scripts/find_pdfs.sh
 bindsym $mod+Control+k exec /home/gerb/uni/dotfiles/scripts/course-management/compile_notes.py
+bindsym $mod+Control+q exec /home/gerb/uni/dotfiles/scripts/i3/power-manager-menu.sh
 
 
 
