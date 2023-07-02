@@ -72,7 +72,7 @@ class MarkdownFile:
                     continue
                 block_type = self._lines[i].split()[0].strip('>![]')
                 block_title = convert_list_to_string(self._lines[i].split()[1:])
-                self._lines[i] = '\\begin{' + block_types[block_type] + '}' + f'[{block_title}]'
+                self._lines[i] = '\\begin{' + block_types[block_type] + '}' + f'[{block_title}].'
                 block_line_count += 1
 
             if r'>' in self._lines[i] and not r'>' in self._lines[i+1]:
