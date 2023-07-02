@@ -154,14 +154,10 @@ require('lazy').setup({
 
   -- REPL driven workflow from vim
   'jpalardy/vim-slime',
-  {
-    'stevearc/oil.nvim',
-    opts = {},
-    -- Optional dependencies
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-  },
-
   'mechatroner/rainbow_csv',
+
+  'lervag/vimtex',
+
 
 }, {})
 
