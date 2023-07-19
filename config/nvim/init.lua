@@ -84,6 +84,24 @@ require('lazy').setup({
     end,
   },
 
+  -- { -- neotree
+  --   "nvim-neo-tree/neo-tree.nvim",
+  --   branch = "v2.x",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+  --     "MunifTanjim/nui.nvim",
+  --   }
+  -- },
+  {
+    'stevearc/aerial.nvim',
+    opts = {},
+    -- Optional dependencies
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons"
+    },
+  },
   { -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
     -- See `:help lualine.txt`
@@ -157,6 +175,8 @@ require('lazy').setup({
   'mechatroner/rainbow_csv',
 
   'lervag/vimtex',
+
+  -- 'folke/zen-mode.nvim',
 
 
 }, {})
@@ -479,8 +499,35 @@ vim.o.wrap = false
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 
+require('aerial').setup({
+  -- optionally use on_attach to set keymaps when aerial has attached to a buffer
+  on_attach = function(bufnr)
+    -- Jump forwards/backwards with '{' and '}'
+    vim.keymap.set('n', '<leader>[', '<cmd>AerialPrev<CR>', {buffer = bufnr})
+    vim.keymap.set('n', '<leader>]', '<cmd>AerialNext<CR>', {buffer = bufnr})
+  end
+})
+vim.keymap.set('n', '<leader><tab>', '<cmd>AerialToggle<cr>')
 
+
+-- require('neo-tree').setup({
+--   sources = {
+--     "filesystem",
+--     "buffers",
+--     "git_status",
+--     "document_symbols",
+--   },
+-- })
 
 -- Configuring slime
 vim.g.slime_target = "tmux"
 vim.keymap.set("n", "<c-c><c-x>", "<cmd>%SlimeSend<cr>")
+
+
+vim.diagnostic.config({
+  virtual_text = true,
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  severity_sort = false,
+})
