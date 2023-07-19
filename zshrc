@@ -27,6 +27,7 @@ export PATH="$HOME/.tmuxifier/bin:$PATH"
 export EDITOR="nvim"
 export PATH=/usr/local/cuda-12.1/bin${PATH:+:${PATH}} # Setup cuda toolkit
 export DASHT_DOCSETS_DIR="/home/gerb/.local/share/Zeal/Zeal/docsets/"
+export LC_TIME="en_GB.utf8"
 
 # Custom aliases
 alias bat="batcat"
