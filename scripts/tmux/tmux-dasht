@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+docsets=$(ls $HOME/.local/share/Zeal/Zeal/docsets | sed s/\.docset// | tr '[:upper:]' '[:lower:]' | tr ' ' '\n')
+selected=$(echo "$docsets" | fzf)
+
+if [[ -z "$selected" ]]; then # Exit if none selected
+	exit 0
+fi
+
+read -p "query: " query
+
+if [[ -z "$query" ]]; then # Exit if no query
+	exit 0
+fi
+
+dasht "$query" "$selected" & while [ : ]; do sleep 1; done
