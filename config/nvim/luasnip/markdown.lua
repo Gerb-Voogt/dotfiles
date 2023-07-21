@@ -4,6 +4,19 @@ local in_mathzone = function()
 end
 
 return {
+    ----------------------
+    --- Other Snippets ---
+    ----------------------
+    s({trig="insimg", dscr="Insert an image env"},
+        fmt( -- The snippet code actually looks like the equation environment it produces.
+            [[
+              ![<>](images/<>){width=50%}
+            ]],
+            { i(1), i(2)},
+            { delimiters = "<>" }
+        )
+    ),
+
     --------------------
     --- Enviroments  ---
     --------------------
@@ -95,7 +108,7 @@ return {
     -----------------------------
     --- Symbols and Functions ---
     -----------------------------
-    s({trig="//", dscr="latex frac", snippetType="autosnippet"},
+    s({trig="///", dscr="latex frac", snippetType="autosnippet"},
         fmt( 
             "\\frac{<>}{<>}",
             { i(1), i(2) },
@@ -340,7 +353,7 @@ return {
             { delimiters = "<>" }
         )
     ),
-    s({trig="...", dscr="cdots", snippetType="autosnippet"},
+    s({trig="....", dscr="cdots", snippetType="autosnippet"},
         fmt( 
             "\\cdots <>",
             { i(1) },
