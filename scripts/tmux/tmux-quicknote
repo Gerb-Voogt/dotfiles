@@ -10,23 +10,22 @@ if [[ -f $scratchpad_dir/$file_name ]]; then
 	# Check whether the time stamp is already in the file or not
 	result=$(grep "$time_stamp" $scratchpad_dir/$file_name)
 	if [[ -z "$result" ]]; then
-		echo "result is empty!"
 		nvim $scratchpad_dir/$file_name +"set wrap"\
+			-c "cd $scratchpad_dir" \
 			-c "norm Go" \
 			-c "norm Go$time_stamp" \
 			-c "norm Go"
 	else 
-		echo "result is empty!"
 		nvim $scratchpad_dir/$file_name +"set wrap"\
+			-c "cd $scratchpad_dir" \
 			-c "norm Go"
 	fi
 
 else
 	# File does not exist
 	title=$(date "+%A %d/%m/%y")
-	echo "# $title" >> $scratchpad_dir/$file_name
-	echo "" >> $scratchpad_dir/$file_name
-	nvim $scratchpad_dir/$file_name +ZenMode +"set wrap"\
+	nvim $scratchpad_dir/$file_name +"set wrap"\
+		-c "cd $scratchpad_dir" \
 		-c "norm Go$time_stamp" \
 		-c "norm Go"
 fi
