@@ -2,7 +2,7 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 add_newline = false
-format = '[ ⟶ ](bold blue)$all'
+format = '[ ⟶ ](bold blue)$all'
 
 [character] 
 success_symbol = '[✗](bold purple)' 
