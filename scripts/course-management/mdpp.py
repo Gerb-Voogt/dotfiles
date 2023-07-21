@@ -15,6 +15,7 @@
 import sys
 import os
 import argparse
+import re
 
 
 class MarkdownFile:
@@ -26,6 +27,7 @@ class MarkdownFile:
 
         self._envs = self._find_envs()
         self._blocks = self._find_blocks()
+        self._code_blocks = self._add_line_numbers_to_code_blocks()
         self._imgs = [] # Unimplemented
 
     # Rewrite this to modify the self._lines variable outright rather then what its doing now
@@ -63,6 +65,8 @@ class MarkdownFile:
                 'note': 'note',
                 'Example': 'example',
                 'example': 'example',
+                'Warning': 'warning',
+                'warning': 'warning',
                 }
         block_line_count = 0
         block_type = ''
@@ -82,6 +86,12 @@ class MarkdownFile:
             if r'>' in self._lines[i]:
                 self._lines[i] = self._lines[i].strip('>')
 
+    def _add_line_numbers_to_code_blocks(self) -> None:
+        match_group = re.compile("```([a-zA-Z]+)")
+        for i in range(len(self._lines)):
+            code_block_in_line = match_group.match(self._lines[i])
+            if code_block_in_line is not None:
+                self._lines[i] = "```{." + code_block_in_line.group(1) + " " + ".numberLines}\n"
 
     def write_file(self, file_name = None):
         if file_name is not None:
