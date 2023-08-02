@@ -13,7 +13,12 @@ FILES_DIR = '/home/gerb/uni/courses'
 def compile_single_note(note_path: str, note_name: str) -> None:
     command = f"notec {note_name}"
     subprocess.run(command.split(), cwd=note_path)
-
+    
+def compile_single_note_and_open(note_path: str, note_name: str) -> None:
+    compile_single_note(note_path, note_name)
+    pdf_name = note_name.split(".")[0] + ".pdf"
+    open_note(note_path, pdf_name)
+    
 
 def compile_multiple_notes(note_path: str, note_names: list, course: Course) -> None:
     note_numbers = []
@@ -25,6 +30,14 @@ def compile_multiple_notes(note_path: str, note_names: list, course: Course) -> 
         command += f" {i}"
     subprocess.run(command.split(), cwd=note_path)
 
+def compile_multiple_notes_and_open(note_path: str, note_names: list, course: Course) -> None:
+    compile_multiple_notes(note_path, note_names, course)
+    note_numbers = []
+    for note_name in note_names:
+        note_numbers.append(note_name.split("-")[-1].split(".")[0])
+    pdf_name = f"{course.code}-notes-{note_numbers[0]}-{note_numbers[-1]}.pdf"
+    open_note(note_path, pdf_name)
+
 
 def compile_all_notes(note_path: str, note_names: list, course: Course) -> None:
     title = f"{course.code}: {course.title} Lecture Notes ({course.quarter}, {course.year})"
@@ -33,6 +46,11 @@ def compile_all_notes(note_path: str, note_names: list, course: Course) -> None:
     for i in note_names:
         command.append(i)
     subprocess.run(command, cwd=note_path)
+
+def compile_all_notes_and_open(note_path: str, note_names: list, course: Course) -> None:
+    compile_all_notes(note_path, note_names, course)
+    pdf_name = f'{course.code}-notes-all.pdf' 
+    open_note(note_path, pdf_name)
 
 
 def delete_notes(note_path, course: Course) -> None:
@@ -125,20 +143,20 @@ def main():
     match selected:
         case "Compile last note":
             note_name = names[-1]
-            compile_single_note(note_path, note_name)
+            compile_single_note_and_open(note_path, note_name)
 
         case "Compile last 2 notes":
             if len(names) < 2:
-                compile_single_note(note_path, names[0])
+                compile_single_note_and_open(note_path, names[0])
             else:
                 note_names = names[-2:]
-                compile_multiple_notes(note_path, note_names, course_object)
+                compile_multiple_notes_and_open(note_path, note_names, course_object)
 
         case "Compile all notes":
             if len(names) < 2:
-                compile_single_note(note_path, names[0])
+                compile_single_note_and_open(note_path, names[0])
             else:
-                compile_all_notes(note_path, names, course_object)
+                compile_all_notes_and_open(note_path, names, course_object)
 
         case "Select specific note to compile":
             _, note_name = rofi("↳ Select a Note", names)
