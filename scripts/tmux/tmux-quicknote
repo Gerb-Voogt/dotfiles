@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 scratchpad_dir="/home/gerb/uni/scratchpad"
-file_name=$(date "+%a-%d-%m-%y.md" | tr '[:upper:]' '[:lower:]')
+file_name=$(date "+w%V-%a-%d-%m-%y.md" | tr '[:upper:]' '[:lower:]')
 time_stamp=$(date "+%H:%M")
 
 
