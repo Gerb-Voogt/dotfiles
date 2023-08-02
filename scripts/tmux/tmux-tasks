@@ -1,3 +1,7 @@
 #!/usr/bin/bash
 
-task list && while true; do sleep 1; done
+echo "Total: $(task status:pending count)\
+ / Pending: $(task +READY count)\
+ / Scheduled: $(task count +SCHEDULED)\
+ / Blocked: $(task count +BLOCKED)"
+task list +READY && while true; do sleep 1; done
