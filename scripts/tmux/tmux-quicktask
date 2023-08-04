@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+read -p "Project: " project
+read -p "Tags: " tags
+read -p "due date: " due_date
+read -p "Description: " desc
+
+if [[ ! -z "$tags" ]]; then
+	tags_seperated=$(echo $tags | sed 's/[^ ]* */+&/g')
+else 
+	tags_seperated=""
+fi
+
+if [[ -z "$tags" ]]; then
+	echo "Description cannot be empty..."
+	sleep 0.5
+	exit 1
+fi
+
+task add project:$project $tags_seperated due:$due_date "$desc"
+sleep 0.5
+

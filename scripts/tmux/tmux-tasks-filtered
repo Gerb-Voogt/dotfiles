@@ -6,17 +6,17 @@ filter_type=$(echo "Tag Project None Ready" | tr ' ' '\n' | fzf)
 if [[ $filter_type == "Tag" ]]; then
 	selected=$(task rc.verbose=nothing tags | awk 'NR>2&&NF>0{print$1}' | fzf )
 	if [[ ! -z "$selected" ]]; then
-		task rc.verbose=nothing +$selected && while true; do sleep 1; done
+		task rc.verbose=no +$selected && while true; do sleep 1; done
 	fi
 elif [[ $filter_type == 'Project' ]]; then
 	selected=$(task rc.verbose=nothing projects | awk 'NR>2&&NF<=2{print$1}' | fzf )
 	if [[ ! -z "$selected" ]]; then
-		task rc.verbose=nothing project:$selected && while true; do sleep 1; done
+		task rc.verbose=no project:$selected && while true; do sleep 1; done
 	fi
 elif [[ $filter_type == 'None' ]]; then
-	task rc.verbose=nothing && while true; do sleep 1; done
+	task rc.verbose=no && while true; do sleep 1; done
 elif [[ $filter_type == 'Ready' ]]; then
-	task rc.verbose=nothing +READY && while true; do sleep 1; done
+	task rc.verbose=no +READY && while true; do sleep 1; done
 else
 	exit
 fi

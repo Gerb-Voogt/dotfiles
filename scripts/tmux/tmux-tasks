@@ -4,6 +4,5 @@ echo "Total: $(task rc.verbose=nothing status:pending count)\
  / Pending: $(task rc.verbose=nothing +READY count)\
  / Scheduled: $(task rc.verbose=nothing count +SCHEDULED)\
  / Blocked: $(task rc.verbose=nothing count +BLOCKED)"
-echo " "
-task rc.verbose=nothing list +READY 
+task rc.verbose=no list +READY 
 task rc.verbose=nothing calendar && while true; do sleep 1; done
