@@ -14,6 +14,7 @@ if [[ -f $scratchpad_dir/$file_name ]]; then
 			-c "cd $scratchpad_dir" \
 			-c "norm Go" \
 			-c "norm Go$time_stamp" \
+			-c "norm Go---" \
 			-c "norm Go"
 	else 
 		nvim $scratchpad_dir/$file_name +"set wrap"\
@@ -27,6 +28,7 @@ else
 	nvim $scratchpad_dir/$file_name +"set wrap"\
 		-c "cd $scratchpad_dir" \
 		-c "norm Go$time_stamp" \
+		-c "norm Go---" \
 		-c "norm Go"
 fi
 
