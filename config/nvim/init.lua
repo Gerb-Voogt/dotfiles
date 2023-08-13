@@ -154,6 +154,34 @@ require('lazy').setup({
     end,
   },
 
+  -- {
+  --   "epwalsh/obsidian.nvim",
+  --   lazy = true,
+  --   event = { "BufReadPre /home/gerb/uni/Vault-MSc/**.md" },
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",-- Required.
+  --     -- Optional, alternative to nvim-treesitter for syntax highlighting.
+  --     "godlygeek/tabular",
+  --     "preservim/vim-markdown",
+  --   },
+  --   opts = {
+  --     dir = "~/uni/Vault-MSc/",  -- no need to call 'vim.fn.expand' here
+  --   },
+  --   config = function(_, opts)
+  --     require("obsidian").setup(opts)
+  --
+  --     -- Optional, override the 'gf' keymap to utilize Obsidian's search functionality.
+  --     -- see also: 'follow_url_func' config option below.
+  --     vim.keymap.set("n", "gf", function()
+  --       if require("obsidian").util.cursor_on_markdown_link() then
+  --         return "<cmd>ObsidianFollowLink<CR>"
+  --       else
+  --         return "gf"
+  --       end
+  --     end, { noremap = false, expr = true })
+  --   end,
+  -- },
+
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
@@ -170,14 +198,15 @@ require('lazy').setup({
   --    to get rid of the warning telling you that there are not plugins in `lua/custom/plugins/`.
   { import = 'custom.plugins' },
 
+  'jbyuki/nabla.nvim',
+
   -- REPL driven workflow from vim
   'jpalardy/vim-slime',
+
+
   'mechatroner/rainbow_csv',
 
   'lervag/vimtex',
-
-  -- 'folke/zen-mode.nvim',
-
 
 }, {})
 
@@ -465,7 +494,7 @@ cmp.setup {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
-    ['<Tab>'] = cmp.mapping(function(fallback)
+    ['<C-n>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
       elseif luasnip.expand_or_jumpable() then
@@ -474,7 +503,7 @@ cmp.setup {
         fallback()
       end
     end, { 'i', 's' }),
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
+    ['<C-p>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
       elseif luasnip.jumpable(-1) then
@@ -531,3 +560,6 @@ vim.diagnostic.config({
   update_in_insert = false,
   severity_sort = false,
 })
+
+
+vim.keymap.set('n', '<leader>p', '<cmd>lua require("nabla").popup()<cr>')
