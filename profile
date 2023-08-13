@@ -33,4 +33,3 @@ alias matlab='~/Local/Matlab_R2022a/bin/matlab -nodesktop -softwareopengl -nospl
 alias cp-pwd='pwd | xclip -selection clipboard'
 alias ctc='xclip -selection clipboard'
 alias vim="nvim"
-alias v="nvim"
