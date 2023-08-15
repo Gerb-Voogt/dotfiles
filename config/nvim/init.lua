@@ -483,9 +483,16 @@ cmp.setup {
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-u>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete {},
-    ['<C-Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() and luasnip.jumpable() then
-        luasnip.jump()
+    ['<C-j>'] = cmp.mapping(function(fallback)
+      if luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      else
+        fallback()
+      end
+    end, {'i', 's'}),
+    ['<C-k>'] = cmp.mapping(function(fallback)
+      if luasnip.jumpable(-1) then
+        luasnip.jump(-1)
       else
         fallback()
       end
