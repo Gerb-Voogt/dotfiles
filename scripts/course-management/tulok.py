@@ -200,6 +200,7 @@ def prompt_menu_1_courses(courses: list[Course]) -> Course | None:
     exit_var = False
     find_var = False
     other_uni_stuff_var = False
+    course = None
 
     courses_to_prompt = list(filter(lambda course: course.active == True, courses))
     
