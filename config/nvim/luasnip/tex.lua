@@ -401,6 +401,13 @@ return {
             { delimiters = "<>" }
         )
     ),
+    s({trig="EE", dscr="Expected value symbol"},
+        fmt( 
+            "\\mathbb{E}\\left[<>\\right]",
+            { i(1) },
+            { delimiters = "<>" }
+        )
+    ),
     s({trig="OO", dscr="Order", snippetType="autosnippet"},
         fmt( 
             "\\mathcal{O}(<>)<>",
