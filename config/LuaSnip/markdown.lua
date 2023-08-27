@@ -294,6 +294,13 @@ return {
             { delimiters = "<>" }
         )
     ),
+    s({trig="EE", dscr="latex Real numbers symbol"},
+        fmt( 
+            "\\mathbb{E}\\left[<>\\right]",
+            { i(1) },
+            { delimiters = "<>" }
+        )
+    ),
     s({trig="nabla", dscr="nabla"},
         fmt( 
             "\\nabla<>",
