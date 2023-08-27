@@ -12,6 +12,17 @@
 \definecolor{catppuccinteal}{HTML}{8bd5ca}
 \definecolor{catppuccinmaroon}{HTML}{eba0ac}
 \definecolor{catppuccingreen}{HTML}{a6e3a1}
+\definecolor{catppuccingray}{HTML}{9399b2}
+
+% Current implemented Enviroments:
+%     - Theorem (Blue)
+%     - Definition (Pink)
+%     - Question (Yellow)
+%     - Proof (Mint)
+%     - Derivation (Green)
+%     - Note (Gray)
+%     - Example (Purple)
+%     - Warning (Orange)
 
 % Theorem
 \newcounter{theo}[section]\setcounter{theo}{0}
@@ -113,6 +124,7 @@
 		\hspace{1em}\begin{mdframed}[]\relax%
 	\label{#2}}{\end{mdframed}}
 
+% Derivation
 \newcounter{derivation}[section]\setcounter{derivation}{0}
 \renewcommand{\thederivation}{\arabic{section}.\arabic{derivation}}
 \newenvironment{derivation}[2][]{%
@@ -137,6 +149,7 @@
 		\hspace{1em}\begin{mdframed}[]\relax%
 	\label{#2}}{\end{mdframed}}
 
+% Note
 \newcounter{note}[section]\setcounter{note}{0}
 \renewcommand{\thenote}{\arabic{section}.\arabic{note}}
 \newenvironment{note}[2][]{%
@@ -145,22 +158,23 @@
 		{\mdfsetup{%
 				frametitle={%
 					\tikz[baseline=(current bounding box.east),outer sep=0pt]
-					\node[anchor=east,rectangle,fill=catppuccinmaroon]
+					\node[anchor=east,rectangle,fill=catppuccingray]
 			{\strut note~\thenote};}}
 		}%
 		{\mdfsetup{%
 				frametitle={%
 					\tikz[baseline=(current bounding box.east),outer sep=0pt]
-					\node[anchor=east,rectangle,fill=catppuccinmaroon]
+					\node[anchor=east,rectangle,fill=catppuccingray]
 			{\strut Note~:~#1};}}%
 		}%
-		\mdfsetup{innertopmargin=5pt,linecolor=catppuccinmaroon,%
+		\mdfsetup{innertopmargin=5pt,linecolor=catppuccingray,%
 			linewidth=2pt,topline=true,%
 			frametitleaboveskip=\dimexpr-\ht\strutbox\relax
 		}
 		\hspace{1em}\begin{mdframed}[]\relax%
 	\label{#2}}{\end{mdframed}}
 
+% Example
 \newcounter{example}[section]\setcounter{example}{0}
 \renewcommand{\theexample}{\arabic{section}.\arabic{example}}
 \newenvironment{example}[2][]{%
@@ -186,6 +200,7 @@
 	\label{#2}}{\end{mdframed}}
 
 
+% Warning
 \newcounter{warning}[section]\setcounter{warning}{0}
 \renewcommand{\thewarning}{\arabic{section}.\arabic{warning}}
 \newenvironment{warning}[2][]{%
