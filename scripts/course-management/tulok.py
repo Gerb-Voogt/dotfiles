@@ -35,7 +35,7 @@ class Course:
         # or else it would not be defined as a course in the first place
         return_value = ''
         for dirpath, _, _ in os.walk(root):
-            if self.code in dirpath.split('/')[-1]:
+            if f"{self.code}-{self.short}" in dirpath.split('/')[-1]:
                 return_value = dirpath
         return return_value
 
