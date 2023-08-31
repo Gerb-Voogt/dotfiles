@@ -13,11 +13,23 @@ plugins=(
 )
 source $ZSH/oh-my-zsh.sh
 
+# Function to quickly view and open notes without leaving a bunch of pdf files floating around
+peek () {
+	if [[ "$1" == *.md ]] && [[ -f "$1" ]]; then
+		pdf_name=$(echo "$1" | sed "s/md/pdf/")
+		current_path=$(pwd)
+		notec $1 && zathura $pdf_name && rm -rf $pdf_name
+	else 
+		echo "Not a markdown file!"
+		return
+	fi
+}
+
+
 # Custom shortcuts
 bindkey -s '^p' 'insect\n'
 bindkey -s '^g' 'gitui\n'
 bindkey -s '^f' 'fzfcd ~/uni\n'
-bindkey -s '^d' 'fzfcd\n'
 
 # Exports
 export BAT_THEME="Catppuccin-mocha"
@@ -36,4 +48,9 @@ alias pf="fzf --preview 'batcat --color=always --style=numbers --line-range=:500
 alias la="exa -lH"
 alias paim="xclip -selection clipboard -t image/png -o >"
 
+
 [ -f "/home/gerb/.ghcup/env" ] && source "/home/gerb/.ghcup/env" # ghcup-env
+
+eval "$(lesspipe)"  
+
+
