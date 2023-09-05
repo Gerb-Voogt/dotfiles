@@ -29,7 +29,7 @@ fzfcd() {
 }
 
 # Custom aliases
-alias matlab='~/Local/Matlab_R2022a/bin/matlab -nodesktop -softwareopengl -nosplash'
+alias matlab='~/Local/Matlab_R2023a/bin/matlab -nodesktop -softwareopengl -nosplash'
 alias cp-pwd='pwd | xclip -selection clipboard'
 alias ctc='xclip -selection clipboard'
 alias vim="nvim"
