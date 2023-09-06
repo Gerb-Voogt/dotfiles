@@ -436,7 +436,18 @@ local servers = {
       telemetry = { enable = false },
     },
   },
+  matlab_ls = {
+    cmd = { "matlab-language-server", "--stdio" },
+    matlab = {
+      indexWorkspace = true,
+      -- installPath = "/usr/local/MATLAB/R2023a/",
+      installPath = "/home/gerb/Local/Matlab_R2023a/",
+      matlabConnectionTiming = 'onStart',
+    },
+  }
 }
+
+
 
 -- Setup neovim lua configuration
 require('neodev').setup()
