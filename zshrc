@@ -52,5 +52,3 @@ alias paim="xclip -selection clipboard -t image/png -o >"
 [ -f "/home/gerb/.ghcup/env" ] && source "/home/gerb/.ghcup/env" # ghcup-env
 
 eval "$(lesspipe)"  
-
-
