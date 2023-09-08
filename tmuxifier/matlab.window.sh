@@ -9,6 +9,6 @@ new_window "matlab"
 
 split_h 50
 run_cmd "v ." 1
-run_cmd "matlab" 2
+run_cmd "matlab-cli" 2
 
 select_pane 1
