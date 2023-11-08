@@ -437,16 +437,27 @@ local servers = {
     },
   },
   matlab_ls = {
-    cmd = { "matlab-language-server", "--stdio" },
+    cmd = { "~/.local/share/nvim/mason/bin/matlab-language-server", "--stdio" },
+    filetype = { "matlab" },
     matlab = {
-      indexWorkspace = true,
-      -- installPath = "/usr/local/MATLAB/R2023a/",
-      installPath = "/home/gerb/Local/Matlab_R2023a/",
+      indexWorkspace = false,
+      installPath = "/usr/local/MATLAB/R2023a/",
       matlabConnectionTiming = 'onStart',
+      telemetry = false,
     },
   }
 }
 
+require("lspconfig").matlab_ls.setup({
+  cmd = { "~/.local/share/nvim/mason/bin/matlab-language-server", "--stdio" },
+  filetype = { "matlab" },
+  matlab = {
+    indexWorkspace = false,
+    installPath = "/usr/local/MATLAB/R2023a/",
+    matlabConnectionTiming = 'onStart',
+    telemetry = false,
+  },
+})
 
 
 -- Setup neovim lua configuration
