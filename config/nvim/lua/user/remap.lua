@@ -25,3 +25,6 @@ vim.keymap.set("n", "<C-Up>", ":resize -1<CR>")
 vim.keymap.set("n", "<C-Down>", ":resize +1<CR>")
 vim.keymap.set("n", "<C-Left>", ":vertical resize +1<CR>")
 vim.keymap.set("n", "<C-Right>", ":vertical resize -1<CR>")
+
+-- Cool popup for math
+vim.keymap.set('n', '<leader>p', '<cmd>lua require("nabla").popup()<cr>')
