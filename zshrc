@@ -38,6 +38,7 @@ eval "$(starship init zsh)"
 export PATH="$HOME/.tmuxifier/bin:$PATH"
 export EDITOR="nvim"
 export PATH=/usr/local/cuda-12.1/bin${PATH:+:${PATH}} # Setup cuda toolkit
+export CPLUS_INCLUDE_PATH=/usr/include/c++/11:/usr/include/x86_64-linux-gnu/c++/11
 export DASHT_DOCSETS_DIR="/home/gerb/.local/share/Zeal/Zeal/docsets/"
 export LC_TIME="en_GB.utf8"
 
