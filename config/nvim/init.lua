@@ -200,6 +200,9 @@ require('lazy').setup({
 
   'jbyuki/nabla.nvim',
 
+  -- Syntax highlighting for just files
+  'vmchale/just-vim',
+
   -- REPL driven workflow from vim
   'jpalardy/vim-slime',
 
