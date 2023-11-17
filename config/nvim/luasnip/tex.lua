@@ -372,6 +372,13 @@ return {
     ---------------
     --- LETTERS ---
     ---------------
+    s({trig="mcal", dscr="mathcal letters", snippetType="autosnippet"},
+        fmt( 
+            "\\mathcal{<>}",
+            { i(1) },
+            { delimiters = "<>" }
+        )
+    ),
     s({trig="RR", dscr="latex Real numbers symbol", snippetType="autosnippet"},
         fmt( 
             "\\mathbb{R}<>",
