@@ -6,8 +6,7 @@ vim.g.maplocalleader = ' '
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system {
+if not vim.loop.fs_stat(lazypath) then vim.fn.system {
     'git',
     'clone',
     '--filter=blob:none',
@@ -583,7 +582,7 @@ vim.keymap.set('n', '<leader><tab>', '<cmd>AerialToggle<cr>')
 -- Configuring slime
 vim.g.slime_target = "tmux"
 vim.keymap.set("n", "<c-c><c-x>", "<cmd>%SlimeSend<cr>")
-
+vim.keymap.set("n", "<c-c><c-f>", "<cmd>!tmux send-keys -t 2 %:r C-m<cr>")
 
 vim.diagnostic.config({
   virtual_text = true,
