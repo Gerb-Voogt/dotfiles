@@ -18,7 +18,7 @@ while getopts "a:t:o:m:hdc" opt; do
 		t) # Add title details to compilation
 			document_title=$OPTARG
 			;;
-		m) # Add title details to compilation
+		m) # Add date details to compilation
 			document_date=$OPTARG
 			;;
 		a) # Add author and title details to compilation
@@ -42,6 +42,7 @@ if [[ ! -z $print_help ]]; then
 	echo "-a: Sets the document author (not printed if title is not set)"
 	echo "-t: Sets the document title"
 	echo "-m: Sets the document date"
+	echo "-c: Setting this flag will result in a TOC being geenrated for the document"
 	echo "-o: Sets the name of the output pdf file"
 	echo "-d: Supress deletion of merged md file"
 	exit 0;
@@ -98,7 +99,7 @@ cls_path="/home/gerb/uni/dotfiles/templates/IEEE.csl"
 
 if [[ -f "./$bibliography_file" ]]; then
 	echo "adding bibliography!"
-	if [[$bibliography_file =~ " " ]]; then
+	if [["$bibliography_file" =~ " " ]]; then
 		echo "Mutliple bibliography files found, multiple .bib files is currently not supported."
 		exit 1;
 	else
