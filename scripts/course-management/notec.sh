@@ -95,21 +95,21 @@ fi
 
 bibliography_file=$(ls | grep "\.bib")
 echo "$bibliography_file"
-cls_path="/home/gerb/uni/dotfiles/templates/IEEE.csl"
+csl_path="/home/gerb/uni/dotfiles/templates/IEEE.csl"
 
 if [[ -f "./$bibliography_file" ]]; then
 	echo "adding bibliography!"
-	if [["$bibliography_file" =~ " " ]]; then
+	if [[ "$bibliography_file" =~ " " ]]; then
 		echo "Mutliple bibliography files found, multiple .bib files is currently not supported."
 		exit 1;
 	else
 		# Add the bibliography if it is present
 		mdpp main.md
-		pandoc --bibliography "./$bibliography_file" --csl $cls_path main.md.p -H ~/uni/templates/markdown-pdf/header.tex -o $output_file_name
+		pandoc --citeproc --bibliography "./$bibliography_file" --csl $csl_path main.md.p -H ~/uni/templates/markdown-pdf/header.tex -o $output_file_name
 	fi
 else # Bib file is not present
 	mdpp main.md
-	pandoc main.md.p -H ~/uni/templates/markdown-pdf/header.tex -o $output_file_name
+	pandoc --citeproc main.md.p -H ~/uni/templates/markdown-pdf/header.tex -o $output_file_name
 fi
 
 if [[ -z $delete_main_md ]]; then
