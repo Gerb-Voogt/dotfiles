@@ -9,6 +9,14 @@ from tulok import Course, scan_folders_for_yaml_file
 
 NOTES_DIR = '/home/gerb/uni/Vault-MSc'
 FILES_DIR = '/home/gerb/uni/courses'
+# 0 = No logging
+# 1 = Debug Logging
+LOG_LEVEL = 0
+
+
+def log(string, LL=LOG_LEVEL):
+    if LL == 1:
+        print(string)
 
 
 def compile_single_note(note_path: str, note_name: str) -> None:
@@ -226,7 +234,17 @@ def main():
             if note_to_open is not None:
                 subprocess.run(["tmux-sessionizer", f"{note_path}"])
                 folder_name = note_path.split("/")[-1]
-                subprocess.run(["tmux", "send-keys", "-t", f"{folder_name:1.1}", "note", " -d", f" {note_to_open}", "Enter"])
+                log(folder_name)
+                cmd = ["tmux", "send-keys", "-t", f"{folder_name}:1.1", "note", " -d", f" {note_to_open}", "Enter"]
+                log(f"Running tmux command {cmd}")
+                subprocess.run(["tmux",
+                                "send-keys",
+                                "-t",
+                                f"{folder_name}:1.1",
+                                "note",
+                                " -d",
+                                f" {note_to_open}",
+                                "Enter"])
 
         case "Decompile all course notes":
             delete_notes(note_path, course_object)
