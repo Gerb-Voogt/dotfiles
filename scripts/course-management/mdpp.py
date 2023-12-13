@@ -25,6 +25,7 @@ class MarkdownFile:
         if len(self._lines) < 1:
             raise Exception("File does not contain data")
 
+        self._find_includes()
         self._envs = self._find_envs()
         self._blocks = self._find_blocks()
         self._code_blocks = self._add_line_numbers_to_code_blocks()
@@ -88,10 +89,40 @@ class MarkdownFile:
 
     def _add_line_numbers_to_code_blocks(self) -> None:
         match_group = re.compile("```([a-zA-Z]+)")
+        match_group_2 = re.compile("```include") # Skip if it is an include
         for i in range(len(self._lines)):
+            # Check whether it is an include block, if yes, skip it
+            include_block_check = match_group.match(self._lines[i])
+            if include_block_check is not None:
+                continue
+
             code_block_in_line = match_group.match(self._lines[i])
             if code_block_in_line is not None:
                 self._lines[i] = "```{." + code_block_in_line.group(1) + " " + ".numberLines}\n"
+
+    def _find_includes(self) -> None:
+        match_group = re.compile(r"!include\s+([\w\-.\/]+\.md)")
+        for i, _ in enumerate(self._lines):
+            include_line = match_group.match(self._lines[i])
+            if include_line is not None:
+                self._lines[i] = ""; # Set the include line to an empty string
+                # The line has an include
+                file_name = include_line.group(0).split(" ")[1]
+                print(f"Found include at line {i}! Including {file_name}...")
+
+                try:
+                    # List is reversed to ensure it gets appended in the correct order
+                    file_as_string = list(reversed(read_from_file(file_name)))
+                except FileNotFoundError:
+                    print(f"[ERROR]: {file_name} was not found")
+                    exit(1)
+
+                for j in range(len(file_as_string)):
+                    if "---" in file_as_string[j] or '\\twocolumn' in file_as_string[j]:
+                        # Exit if header is reached
+                        break;
+                    self._lines.insert(i+1, file_as_string[j])
+
 
     def write_file(self, file_name = None):
         if file_name is not None:
