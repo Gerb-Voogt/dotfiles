@@ -717,15 +717,15 @@ return {
         }
       )
     ),
-    s({trig = '([%a%)%]%}])nn', regTrig = true, wordTrig = false, snippetType="autosnippet", priority=100},
-      fmta(
-        "<>_{<>}",
-        {
-          f( function(_, snip) return snip.captures[1] end ),
-          t("n")
-        }
-      )
-    ),
+    -- s({trig = '([%a%)%]%}])nn', regTrig = true, wordTrig = false, snippetType="autosnippet", priority=100},
+    --   fmta(
+    --     "<>_{<>}",
+    --     {
+    --       f( function(_, snip) return snip.captures[1] end ),
+    --       t("n")
+    --     }
+    --   )
+    -- ),
     s({trig = '([%a%)%]%}])np1', regTrig = true, wordTrig = false, snippetType="autosnippet"},
       fmta(
         "<>_{<>}",
