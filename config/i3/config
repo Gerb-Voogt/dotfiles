@@ -1,4 +1,4 @@
-exec feh --bg-fill --zoom fill /home/gerb/themes/wallpapers/anime/anime-wallpaper-01.jpg
+exec feh --bg-fill --zoom fill /home/gerb/themes/wallpapers/anime-wallpaper-01.jpg
 # anime-wallpaper-01.jpg
 
 # Set lockscreen
@@ -23,9 +23,9 @@ new_window pixel 1
 
 # You can also use any non-zero value if you'd like to have a border
 default_border pixel 1
-gaps inner 4
-gaps outer 4
-gaps top 0
+# gaps inner 4
+# gaps outer 4
+# gaps top 0
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
