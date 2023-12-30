@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python3.12
 #----------------------------
 # Code stolen from Gilles Castel
 # https://github.com/gillescastel/university-setup/blob/master/scripts/rofi.py

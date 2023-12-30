@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python3.12
 # NOTICE:
 # This code is a fucking mess and should be fixed to be written
 # in a non stupid way at some point. This however seems like 
