@@ -1,9 +1,9 @@
-#!/usr/bin/python3
+#!/usr/bin/python3.12
 import sys
 import os
 import subprocess
 import re
-import ruamel.yaml
+# import ruamel.yaml
 from rofi import rofi
 from tulok import Course, scan_folders_for_yaml_file
 
@@ -105,16 +105,16 @@ def open_lecture_slides_or_pdf(course_path: str) -> None:
     subprocess.Popen(command.split(), start_new_session=True)
 
 
-def change_course_state(course: Course) -> None:
-    course_path = course.find_files_dir()
-    yaml = ruamel.yaml.YAML()
-    yaml.preserve_quotes = True
-
-    with open(course_path + "/info.yaml", "r") as fb:
-        data = yaml.load(fb)
-        data["active"] = not data["active"]
-    with open(course_path + "/info.yaml", "w") as fb:
-        yaml.dump(data, fb)
+# def change_course_state(course: Course) -> None:
+#     course_path = course.find_files_dir()
+#     yaml = ruamel.yaml.YAML()
+#     yaml.preserve_quotes = True
+#
+#     with open(course_path + "/info.yaml", "r") as fb:
+#         data = yaml.load(fb)
+#         data["active"] = not data["active"]
+#     with open(course_path + "/info.yaml", "w") as fb:
+#         yaml.dump(data, fb)
 
 
 def main():
