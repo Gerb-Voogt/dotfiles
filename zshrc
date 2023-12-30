@@ -28,7 +28,7 @@ peek () {
 
 # Custom shortcuts
 bindkey -s '^p' 'insect\n'
-bindkey -s '^g' 'gitui\n'
+bindkey -s '^g' 'gitui -t mocha.ron\n'
 bindkey -s '^f' 'fzfcd ~/uni\n'
 
 # Exports
@@ -48,6 +48,9 @@ alias ls="exa"
 alias pf="fzf --preview 'batcat --color=always --style=numbers --line-range=:500 {}'"
 alias la="exa -lH"
 alias paim="xclip -selection clipboard -t image/png -o >"
+
+alias python="python3.12"
+alias python3="python3.12"
 
 
 [ -f "/home/gerb/.ghcup/env" ] && source "/home/gerb/.ghcup/env" # ghcup-env
