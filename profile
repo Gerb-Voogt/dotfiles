@@ -33,3 +33,5 @@ alias matlab-cli='/usr/local/bin/matlab -nodesktop -softwareopengl -nosplash'
 alias cp-pwd='pwd | xclip -selection clipboard'
 alias ctc='xclip -selection clipboard'
 alias vim="nvim"
+
+export LC_ALL=C; unset LANGUAGE
