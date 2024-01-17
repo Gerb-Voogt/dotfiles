@@ -30,7 +30,7 @@ peek () {
 bindkey -s '^p' 'insect\n'
 bindkey -s '^g' 'gitui -t mocha.ron\n'
 bindkey -s '^f' 'fzfcd ~/uni\n'
-bindkey -s '^M' 'tmuxifier load-window matlab\n'
+bindkey -s '^m' 'tmuxifier load-window matlab\n'
 
 # Exports
 export BAT_THEME="Catppuccin-mocha"

@@ -8,7 +8,6 @@ window_root "$PWD"
 new_window "matlab"
 
 split_v 30
-run_cmd "nvim ." 1
 run_cmd "matlab-cli" 2
 
 select_pane 1
