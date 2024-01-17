@@ -7,7 +7,7 @@
 window_root "$PWD"
 new_window "matlab"
 
-split_v 70
+split_v 30
 run_cmd "nvim ." 1
 run_cmd "matlab-cli" 2
 
