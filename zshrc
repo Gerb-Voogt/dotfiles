@@ -51,6 +51,7 @@ alias paim="xclip -selection clipboard -t image/png -o >"
 
 alias python="python3.12"
 alias python3="python3.12"
+alias tmux="tmux -u"
 
 
 [ -f "/home/gerb/.ghcup/env" ] && source "/home/gerb/.ghcup/env" # ghcup-env
