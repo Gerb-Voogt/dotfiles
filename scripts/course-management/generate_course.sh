@@ -24,8 +24,8 @@ if [[ $# -gt 0 ]]; then
 	exit 1
 fi
 
-COURSES_DIR="/home/gerb/uni/courses"
-NOTES_DIR="/home/gerb/uni/Vault-MSc"
+COURSES_DIR="/home/gerben/uni/courses"
+NOTES_DIR="/home/gerben/uni/Vault-MSc"
 
 read -p "Code: " cc
 read -p "Title (long): " title
@@ -47,15 +47,15 @@ dirname="$cc-$title_short"
 codeprefix=$(echo "$cc" | grep -o "^[A-Z]*")
 
 # Check if the course code base dir exists, create it if not
-if [ -d "/home/gerb/uni/courses/$codeprefix" ]; then
+if [ -d "/home/gerben/uni/courses/$codeprefix" ]; then
 	echo "Directory exists"
 else
-	mkdir /home/gerb/uni/courses/$codeprefix
+	mkdir /home/gerben/uni/courses/$codeprefix
 fi
-if [ -d "/home/gerb/uni/Vault-MSc/$codeprefix" ]; then
+if [ -d "/home/gerben/uni/Vault-MSc/$codeprefix" ]; then
 	echo "Directory exists"
 else
-	mkdir /home/gerb/uni/Vault-MSc/$codeprefix
+	mkdir /home/gerben/uni/Vault-MSc/$codeprefix
 fi
 
 

@@ -35,3 +35,6 @@ alias ctc='xclip -selection clipboard'
 alias vim="nvim"
 
 export LC_ALL=C; unset LANGUAGE
+
+export LC_ALL=en_US.UTF-8  
+export LANG=en_US.UTF-8

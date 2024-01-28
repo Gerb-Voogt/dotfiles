@@ -33,7 +33,7 @@ void search_dir(const char* dir_path, const char* ext) {
 }
 
 int main() {
-    const char *dir_path = "/home/gerb/uni";
+    const char *dir_path = "/home/gerben/uni";
     const char *ext = "pdf";
     search_dir(dir_path, ext);
     return 0;

@@ -1,7 +1,7 @@
 #!/bin/bash
 
-pdf_files=$(/home/gerb/i3-scripts/find_pdfs)
-pdf_names=$(/home/gerb/i3-scripts/find_pdfs | /home/gerb/i3-scripts/filename.py)
+pdf_files=$(/home/gerben/uni/dotfiles/scripts/i3/findpdfs)
+pdf_names=$(/home/gerben/uni/dotfiles/scripts/i3/findpdfs | /home/gerben/uni/dotfiles/scripts/i3/filename.py)
 
 # Use Rofi to select a PDF file by name
 selected_name=$(echo "${pdf_names[@]}" | rofi -dmenu -i -p " Select file")

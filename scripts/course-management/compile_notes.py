@@ -1,4 +1,4 @@
-#!/usr/bin/python3.12
+#!/usr/bin/python3
 import sys
 import os
 import subprocess
@@ -7,8 +7,8 @@ import re
 from rofi import rofi
 from tulok import Course, scan_folders_for_yaml_file
 
-NOTES_DIR = '/home/gerb/uni/Vault-MSc'
-FILES_DIR = '/home/gerb/uni/courses'
+NOTES_DIR = '/home/gerben/uni/Vault-MSc'
+FILES_DIR = '/home/gerben/uni/courses'
 # 0 = No logging
 # 1 = Debug Logging
 LOG_LEVEL = 0

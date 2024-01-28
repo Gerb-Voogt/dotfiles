@@ -6,11 +6,11 @@ export ZSH="$HOME/.oh-my-zsh"
 set bell-style none
 ZSH_THEME=""
 
-plugins=(
-	git 
-	zsh-syntax-highlighting 
-	zsh-autosuggestions
-)
+# plugins=(
+# 	git 
+# 	zsh-syntax-highlighting 
+# 	zsh-autosuggestions
+# )
 source $ZSH/oh-my-zsh.sh
 
 # Function to quickly view and open notes without leaving a bunch of pdf files floating around
@@ -27,9 +27,7 @@ peek () {
 
 
 # Custom shortcuts
-bindkey -s '^p' 'insect\n'
 bindkey -s '^g' 'gitui -t mocha.ron\n'
-bindkey -s '^f' 'fzfcd ~/uni\n'
 bindkey -s '^o' 'tmuxifier load-window matlab\n'
 
 # Exports
