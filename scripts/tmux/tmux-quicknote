@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-scratchpad_dir="/home/gerb/uni/scratchpad"
+scratchpad_dir="/home/gerben/uni/scratchpad"
 file_name=$(date "+w%V-%a-%d-%m-%y.md" | tr '[:upper:]' '[:lower:]')
 time_stamp=$(date "+%H:%M")
 
