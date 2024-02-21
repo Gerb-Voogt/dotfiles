@@ -7,7 +7,6 @@ set bell-style none
 ZSH_THEME=""
 
 # plugins=(
-# 	git 
 # 	zsh-syntax-highlighting 
 # 	zsh-autosuggestions
 # )
@@ -28,31 +27,29 @@ peek () {
 
 # Custom shortcuts
 bindkey -s '^g' 'gitui -t mocha.ron\n'
-bindkey -s '^o' 'tmuxifier load-window matlab\n'
+# bindkey -s '^o' 'tmuxifier load-window matlab\n'
 
 # Exports
-export BAT_THEME="Catppuccin-mocha"
 eval "$(starship init zsh)"
 
 export PATH="$HOME/.tmuxifier/bin:$PATH"
 export EDITOR="nvim"
-export PATH=/usr/local/cuda-12.1/bin${PATH:+:${PATH}} # Setup cuda toolkit
 export CPLUS_INCLUDE_PATH=/usr/include/c++/11:/usr/include/x86_64-linux-gnu/c++/11
-export DASHT_DOCSETS_DIR="/home/gerb/.local/share/Zeal/Zeal/docsets/"
+# export DASHT_DOCSETS_DIR="/home/gerb/.local/share/Zeal/Zeal/docsets/"
 export LC_TIME="en_GB.utf8"
 
 # Custom aliases
-alias bat="batcat"
 alias ls="exa"
-alias pf="fzf --preview 'batcat --color=always --style=numbers --line-range=:500 {}'"
 alias la="exa -lH"
-alias paim="xclip -selection clipboard -t image/png -o >"
-
-alias python="python3.12"
-alias python3="python3.12"
+alias paim="xclip -selection clipboard -t image/png -o >" # Paste images in terminal
 alias tmux="tmux -u"
 
+alias yeet="rm -rf"
 
-[ -f "/home/gerb/.ghcup/env" ] && source "/home/gerb/.ghcup/env" # ghcup-env
 
-eval "$(lesspipe)"  
+# Needed for Haskell
+# [ -f "/home/gerb/.ghcup/env" ] && source "/home/gerb/.ghcup/env" # ghcup-env
+
+## ENABLING THIS MAKES TERMINAL BOOTUP TIME VERY SLOW
+# Papis autocomplete
+# eval "$(_PAPIS_COMPLETE=zsh_source papis)" 
