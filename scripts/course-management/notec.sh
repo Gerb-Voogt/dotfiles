@@ -95,7 +95,7 @@ fi
 
 bibliography_file=$(ls | grep "\.bib")
 echo "$bibliography_file"
-csl_path="/home/gerb/uni/dotfiles/templates/IEEE.csl"
+csl_path="/home/gerben/uni/dotfiles/templates/IEEE.csl"
 
 if [[ -f "./$bibliography_file" ]]; then
 	echo "adding bibliography!"
