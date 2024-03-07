@@ -29,7 +29,7 @@ fzfcd() {
 }
 
 # Custom aliases
-alias matlab-cli='/usr/local/bin/matlab -nodesktop -softwareopengl -nosplash'
+alias matlab-cli='/home/gerben/.local/bin/matlab -nodesktop -softwareopengl -nosplash'
 alias cp-pwd='pwd | xclip -selection clipboard'
 alias ctc='xclip -selection clipboard'
 alias vim="nvim"
@@ -38,3 +38,18 @@ export LC_ALL=C; unset LANGUAGE
 
 export LC_ALL=en_US.UTF-8  
 export LANG=en_US.UTF-8
+
+# >>> juliaup initialize >>>
+
+# !! Contents within this block are managed by juliaup !!
+
+case ":$PATH:" in
+    *:/home/gerben/.juliaup/bin:*)
+        ;;
+
+    *)
+        export PATH=/home/gerben/.juliaup/bin${PATH:+:${PATH}}
+        ;;
+esac
+
+# <<< juliaup initialize <<<

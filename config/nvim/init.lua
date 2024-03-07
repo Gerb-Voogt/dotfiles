@@ -158,6 +158,9 @@ require('lazy').setup({
   --   -- Optional dependencies
   --   dependencies = { "nvim-tree/nvim-web-devicons" },
   -- },
+  {
+    'JuliaEditorSupport/julia-vim',
+  },
 
   -- {
   --   "epwalsh/obsidian.nvim",
@@ -203,6 +206,7 @@ require('lazy').setup({
   --    to get rid of the warning telling you that there are not plugins in `lua/custom/plugins/`.
   { import = 'custom.plugins' },
 
+  -- Personal Plugins
   'jbyuki/nabla.nvim',
 
   -- Syntax highlighting for just files
@@ -210,10 +214,7 @@ require('lazy').setup({
 
   -- REPL driven workflow from vim
   'jpalardy/vim-slime',
-
-
   'mechatroner/rainbow_csv',
-
   'lervag/vimtex',
 
 }, {})
@@ -599,4 +600,6 @@ vim.diagnostic.config({
 })
 
 
+-- Configuring nabla
 vim.keymap.set('n', '<leader>p', '<cmd>lua require("nabla").popup()<cr>')
+

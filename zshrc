@@ -53,3 +53,17 @@ alias yeet="rm -rf"
 ## ENABLING THIS MAKES TERMINAL BOOTUP TIME VERY SLOW
 # Papis autocomplete
 # eval "$(_PAPIS_COMPLETE=zsh_source papis)" 
+
+# >>> juliaup initialize >>>
+
+# !! Contents within this block are managed by juliaup !!
+
+path=('/home/gerben/.juliaup/bin' $path)
+export PATH
+
+# <<< juliaup initialize <<<
+# Bind commands for running a julia daemon
+alias juliaserver="echo 'Running Julia server!' && julia --startup-file=no -e 'using Revise; using DaemonMode; serve()'"
+alias juliaclient='julia --startup-file=no -e "using DaemonMode; runargs()"'
+
+[ -f "/home/gerben/.ghcup/env" ] && source "/home/gerben/.ghcup/env" # ghcup-env
