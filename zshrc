@@ -33,7 +33,7 @@ bindkey -s '^g' 'gitui -t mocha.ron\n'
 eval "$(starship init zsh)"
 
 export PATH="$HOME/.tmuxifier/bin:$PATH"
-export NOTES_DIR="/home/gerben/uni/Vault-MSc/"
+export NOTES_DIR="/home/gerben/uni/Vault-MSc"
 export EDITOR="nvim"
 export CPLUS_INCLUDE_PATH=/usr/include/c++/11:/usr/include/x86_64-linux-gnu/c++/11
 # export DASHT_DOCSETS_DIR="/home/gerb/.local/share/Zeal/Zeal/docsets/"
