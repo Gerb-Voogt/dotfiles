@@ -208,6 +208,7 @@ require('lazy').setup({
 
   -- Personal Plugins
   'jbyuki/nabla.nvim',
+  'mbbill/undotree',
 
   -- Syntax highlighting for just files
   'vmchale/just-vim',
