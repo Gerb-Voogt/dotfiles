@@ -62,9 +62,14 @@ alias yeet="rm -rf"
 path=('/home/gerben/.juliaup/bin' $path)
 export PATH
 
+DOTFILESPATH="$HOME/uni/dotfiles/"
+export DOTFILESPATH
+
 # <<< juliaup initialize <<<
 # Bind commands for running a julia daemon
 alias juliaserver="echo 'Running Julia server!' && julia --startup-file=no -e 'using Revise; using DaemonMode; serve()'"
 alias juliaclient='julia --startup-file=no -e "using DaemonMode; runargs()"'
 
 [ -f "/home/gerben/.ghcup/env" ] && source "/home/gerben/.ghcup/env" # ghcup-env
+
+
