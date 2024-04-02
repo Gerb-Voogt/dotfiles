@@ -304,7 +304,6 @@ vim.keymap.set('n', '<leader>/', function()
   })
 end, { desc = '[/] Fuzzily search in current buffer' })
 
-vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
 vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
@@ -564,8 +563,11 @@ require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/luasnip/"})
 vim.opt.guicursor = ""
 vim.opt.scrolloff = 8
 vim.o.wrap = false
-vim.o.tabstop = 4
 vim.o.shiftwidth = 4
+vim.o.tabstop = 4
+vim.o.sw = 4
+vim.o.ts = 4
+vim.o.expandtab = true;
 
 require('aerial').setup({
   -- optionally use on_attach to set keymaps when aerial has attached to a buffer
@@ -603,4 +605,3 @@ vim.diagnostic.config({
 
 -- Configuring nabla
 vim.keymap.set('n', '<leader>p', '<cmd>lua require("nabla").popup()<cr>')
-
