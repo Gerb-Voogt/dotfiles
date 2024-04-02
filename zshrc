@@ -72,4 +72,4 @@ alias juliaclient='julia --startup-file=no -e "using DaemonMode; runargs()"'
 
 [ -f "/home/gerben/.ghcup/env" ] && source "/home/gerben/.ghcup/env" # ghcup-env
 
-
+$DOTFILESPATH/scripts/tmux/haiku

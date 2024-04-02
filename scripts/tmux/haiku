@@ -1,0 +1,21 @@
+#!/usr/bin/bash
+
+chance=10 # Adjusts how often a Haiku is printed
+number=$(($RANDOM % $chance))
+
+if [[ $number -eq 1 ]]; then
+	# Check if tmux is running
+	tmux_running=$(pgrep tmux)
+	if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+		exit 0	
+	else
+		# Print a Haiku
+		total_number_of_haikus=$(cat $DOTFILESPATH/other/haikus.json | jq '.haikus' | jq 'length')
+		selected=$(($RANDOM % $total_number_of_haikus))
+		text=$(cat $DOTFILESPATH/other/haikus.json | jq ".haikus[$selected].text" | tr '\"' ' ' | tr ',' '\n')
+		printf "$text\n"
+		exit 0
+	fi
+fi
+
+
