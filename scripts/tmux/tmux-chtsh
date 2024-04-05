@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-languages=$(echo "bash c cpp julia latex matlab octave python3 r rust cmake" | tr ' ' '\n')
+languages=$(echo "bash c cpp julia latex matlab octave python r rust cmake" | tr ' ' '\n')
 core_utils=$(echo "awk git find grep" | tr ' ' '\n')
 
 selected=$(printf "$languages\n$core_utils" | fzf)
@@ -14,6 +14,9 @@ if [[ -z "$query" ]]; then # Exit if no query
 	exit 0
 fi
 
+query=$(echo $query | tr ' ' '+')
+echo "$selected/$query"
+
 export CHTSH_QUERY_OPTIONS=style=monokai
-cht.sh $selected $query | less
+cht.sh "$selected/$query" | less
 
