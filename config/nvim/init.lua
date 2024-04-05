@@ -602,6 +602,7 @@ vim.diagnostic.config({
   severity_sort = false,
 })
 
+vim.keymap.set('n', '<leader>u', '<cmd>UndotreeToggle<cr>')
 
 -- Configuring nabla
 vim.keymap.set('n', '<leader>p', '<cmd>lua require("nabla").popup()<cr>')
