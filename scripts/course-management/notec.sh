@@ -105,7 +105,7 @@ if [[ -f "./$bibliography_file" ]]; then
 	else
 		# Add the bibliography if it is present
 		mdpp main.md
-		pandoc --bibliography "./$bibliography_file" --csl $csl_path main.md.p -H ~/uni/templates/markdown-pdf/header.tex -o $output_file_name
+		pandoc --citeproc --bibliography "./$bibliography_file" --csl $csl_path main.md.p -H ~/uni/templates/markdown-pdf/header.tex -o $output_file_name
 	fi
 else # Bib file is not present
 	mdpp main.md
