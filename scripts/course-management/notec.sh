@@ -7,7 +7,7 @@ document_title=0
 generate_toc=0
 document_date=0
 
-while getopts "a:t:o:m:hdc" opt; do
+while getopts "a:t:s:o:m:hdc" opt; do
 	case $opt in
 		o) # Rename output file
 			output_file_name=$OPTARG
@@ -17,6 +17,9 @@ while getopts "a:t:o:m:hdc" opt; do
 			;;
 		t) # Add title details to compilation
 			document_title=$OPTARG
+			;;
+		s) # Add subtitle details to compilation
+			document_subtitle=$OPTARG
 			;;
 		m) # Add date details to compilation
 			document_date=$OPTARG
@@ -41,6 +44,7 @@ if [[ ! -z $print_help ]]; then
 	echo "-h: Prints the help menu"
 	echo "-a: Sets the document author (not printed if title is not set)"
 	echo "-t: Sets the document title"
+	echo "-s: Sets the document subtitle"
 	echo "-m: Sets the document date"
 	echo "-c: Setting this flag will result in a TOC being geenrated for the document"
 	echo "-o: Sets the name of the output pdf file"
@@ -52,6 +56,12 @@ fi
 if [[ $document_title != 0 ]]; then
 	echo "\\title{$document_title}" >> main.md
 	echo "\\author{$author}" >> main.md
+
+	if [[ $document_subtitle != 0 ]]; then
+		echo "\\title{$document_title\\\\ \\large $document_subtitle}" >> main.md
+	else
+		echo "\\title{$document_title}" >> main.md
+	fi
 
 	if [[ $document_date != 0 ]]; then
 		echo "$document_date" >> main.md
