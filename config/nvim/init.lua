@@ -158,8 +158,15 @@ require('lazy').setup({
   --   -- Optional dependencies
   --   dependencies = { "nvim-tree/nvim-web-devicons" },
   -- },
+  { 'JuliaEditorSupport/julia-vim' },
   {
-    'JuliaEditorSupport/julia-vim',
+    'RaafatTurki/hex.nvim',
+    config = function()
+      require 'hex'.setup()
+    end,
+  },
+  {
+    'maxbane/vim-asm_ca65',
   },
 
   -- {
@@ -265,6 +272,8 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
+vim.keymap.set('i', '<C-c>', "<ESC>")
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -400,6 +409,7 @@ local on_attach = function(_, bufnr)
   end
 
   nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+  nmap('<leader>rf', vim.lsp.buf.format, '[R]e[F]ormat')
   nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
   nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
@@ -466,6 +476,15 @@ require("lspconfig").matlab_ls.setup({
     matlabConnectionTiming = 'onStart',
     telemetry = false,
   },
+})
+
+require("lspconfig").julials.setup({
+  on_new_config = function(new_config, _)
+    local julia = vim.fn.expand("~/.julia/environments/nvim-lspconfig/bin/julia")
+    if require("lspconfig").util.path.is_file(julia) then
+      new_config.cmd[1] = julia
+    end
+  end,
 })
 
 
