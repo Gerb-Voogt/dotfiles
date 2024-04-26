@@ -46,7 +46,7 @@ alias paim="xclip -selection clipboard -t image/png -o >" # Paste images in term
 alias tmux="tmux -u"
 
 alias yeet="rm -rf"
-
+alias so="source"
 
 # Needed for Haskell
 # [ -f "/home/gerb/.ghcup/env" ] && source "/home/gerb/.ghcup/env" # ghcup-env
@@ -76,3 +76,7 @@ $DOTFILESPATH/scripts/tmux/haiku
 
 # Export for golang
 export PATH=$PATH:/usr/local/go/bin
+
+# Export for Ruby/gems
+export GEM_HOME="$HOME/gems"
+export PATH="$HOME/gems/bin:$PATH"
