@@ -6,10 +6,10 @@ export ZSH="$HOME/.oh-my-zsh"
 set bell-style none
 ZSH_THEME=""
 
-# plugins=(
-# 	zsh-syntax-highlighting 
-# 	zsh-autosuggestions
-# )
+plugins=(
+	# zsh-syntax-highlighting 
+	zsh-autosuggestions
+)
 source $ZSH/oh-my-zsh.sh
 
 # Function to quickly view and open notes without leaving a bunch of pdf files floating around
