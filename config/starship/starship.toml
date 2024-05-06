@@ -65,3 +65,7 @@ disabled = false
 [ruby]
 symbol = ' '
 disabled = false
+
+[zig]
+symbol = ' '
+disabled = false
