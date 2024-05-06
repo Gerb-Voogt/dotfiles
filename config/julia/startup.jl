@@ -9,16 +9,21 @@ let
     end
 end
 
+# Setting ENV variables
+ENV["EDITOR"] = "nvim"
+ENV["JULIA_NUM_THREADS"] = 8
+
 using Revise
 using OhMyREPL
 using Crayons
 using OhMyREPL: Passes.SyntaxHighlighter
 
+
 # Turn off bracket matching as it fucks with Slime in vim
 enable_autocomplete_brackets(false)
 
+# Setting up color scheme
 scheme = SyntaxHighlighter.ColorScheme()
-
 SyntaxHighlighter.symbol!(scheme, Crayon(foreground=(242, 205, 205)))
 SyntaxHighlighter.comment!(scheme, Crayon(foreground=(127, 132, 156)))
 SyntaxHighlighter.string!(scheme, Crayon(foreground=(166, 227, 161)))
