@@ -92,15 +92,15 @@ require('lazy').setup({
   --     "MunifTanjim/nui.nvim",
   --   }
   -- },
-  -- {
-  --   'stevearc/aerial.nvim',
-  --   opts = {},
-  --   -- Optional dependencies
-  --   dependencies = {
-  --     "nvim-treesitter/nvim-treesitter",
-  --     "nvim-tree/nvim-web-devicons"
-  --   },
-  -- },
+  {
+    'stevearc/aerial.nvim',
+    opts = {},
+    -- Optional dependencies
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons"
+    },
+  },
   { -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
     -- See `:help lualine.txt`
@@ -586,15 +586,15 @@ vim.o.sw = 4
 vim.o.ts = 4
 vim.o.expandtab = true;
 
--- require('aerial').setup({
---   -- optionally use on_attach to set keymaps when aerial has attached to a buffer
---   on_attach = function(bufnr)
---     -- Jump forwards/backwards with '{' and '}'
---     vim.keymap.set('n', '<leader>[', '<cmd>AerialPrev<CR>', {buffer = bufnr})
---     vim.keymap.set('n', '<leader>]', '<cmd>AerialNext<CR>', {buffer = bufnr})
---   end
--- })
--- vim.keymap.set('n', '<leader><tab>', '<cmd>AerialToggle<cr>')
+require('aerial').setup({
+  -- optionally use on_attach to set keymaps when aerial has attached to a buffer
+  on_attach = function(bufnr)
+    -- Jump forwards/backwards with '{' and '}'
+    vim.keymap.set('n', '<leader>[', '<cmd>AerialPrev<CR>', {buffer = bufnr})
+    vim.keymap.set('n', '<leader>]', '<cmd>AerialNext<CR>', {buffer = bufnr})
+  end
+})
+vim.keymap.set('n', '<leader><tab>', '<cmd>AerialToggle<cr>')
 
 
 -- require('neo-tree').setup({
