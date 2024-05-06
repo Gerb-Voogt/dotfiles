@@ -92,15 +92,15 @@ require('lazy').setup({
   --     "MunifTanjim/nui.nvim",
   --   }
   -- },
-  {
-    'stevearc/aerial.nvim',
-    opts = {},
-    -- Optional dependencies
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-tree/nvim-web-devicons"
-    },
-  },
+  -- {
+  --   'stevearc/aerial.nvim',
+  --   opts = {},
+  --   -- Optional dependencies
+  --   dependencies = {
+  --     "nvim-treesitter/nvim-treesitter",
+  --     "nvim-tree/nvim-web-devicons"
+  --   },
+  -- },
   { -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
     -- See `:help lualine.txt`
@@ -213,17 +213,15 @@ require('lazy').setup({
   --    to get rid of the warning telling you that there are not plugins in `lua/custom/plugins/`.
   { import = 'custom.plugins' },
 
-  -- Personal Plugins
-  'jbyuki/nabla.nvim',
   'mbbill/undotree',
+  'mechatroner/rainbow_csv',
+  -- 'lervag/vimtex',
 
   -- Syntax highlighting for just files
   'vmchale/just-vim',
 
   -- REPL driven workflow from vim
   'jpalardy/vim-slime',
-  'mechatroner/rainbow_csv',
-  'lervag/vimtex',
 
 }, {})
 -- [[ Setting options ]]
@@ -588,15 +586,15 @@ vim.o.sw = 4
 vim.o.ts = 4
 vim.o.expandtab = true;
 
-require('aerial').setup({
-  -- optionally use on_attach to set keymaps when aerial has attached to a buffer
-  on_attach = function(bufnr)
-    -- Jump forwards/backwards with '{' and '}'
-    vim.keymap.set('n', '<leader>[', '<cmd>AerialPrev<CR>', {buffer = bufnr})
-    vim.keymap.set('n', '<leader>]', '<cmd>AerialNext<CR>', {buffer = bufnr})
-  end
-})
-vim.keymap.set('n', '<leader><tab>', '<cmd>AerialToggle<cr>')
+-- require('aerial').setup({
+--   -- optionally use on_attach to set keymaps when aerial has attached to a buffer
+--   on_attach = function(bufnr)
+--     -- Jump forwards/backwards with '{' and '}'
+--     vim.keymap.set('n', '<leader>[', '<cmd>AerialPrev<CR>', {buffer = bufnr})
+--     vim.keymap.set('n', '<leader>]', '<cmd>AerialNext<CR>', {buffer = bufnr})
+--   end
+-- })
+-- vim.keymap.set('n', '<leader><tab>', '<cmd>AerialToggle<cr>')
 
 
 -- require('neo-tree').setup({
@@ -623,5 +621,3 @@ vim.diagnostic.config({
 
 vim.keymap.set('n', '<leader>u', '<cmd>UndotreeToggle<cr>')
 
--- Configuring nabla
-vim.keymap.set('n', '<leader>p', '<cmd>lua require("nabla").popup()<cr>')
