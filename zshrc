@@ -27,6 +27,7 @@ peek () {
 
 # Custom shortcuts
 bindkey -s '^g' 'gitui -t mocha.ron\n'
+bindkey -s '^f' 'fzfcd ~/uni\n'
 # bindkey -s '^o' 'tmuxifier load-window matlab\n'
 
 # Exports
