@@ -223,6 +223,15 @@ require('lazy').setup({
   -- REPL driven workflow from vim
   'jpalardy/vim-slime',
 
+  { "ThePrimeagen/refactoring.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    config = function()
+      require("refactoring").setup()
+    end,
+  },
 }, {})
 -- [[ Setting options ]]
 -- See `:help vim.o`

@@ -20,6 +20,8 @@ disabled = true
 [directory]
 truncation_length = 1
 style = 'bold blue'
+read_only = '  '
+read_only_style = 'blue'
 
 [git_status]
 style = 'bold blue'
