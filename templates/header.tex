@@ -11,6 +11,7 @@
 
 \usepackage{hyperref}
 \usepackage{cleveref}
+\usepackage{fancyhdr}
 
 \usepackage{subcaption}
 \usepackage[framemethod=TikZ]{mdframed}
@@ -30,6 +31,9 @@
 \newcommand{\sinc}{\text{sinc}}
 \DeclareMathOperator*{\argmax}{arg\,max}
 \DeclareMathOperator*{\argmin}{arg\,min}
+
+\newcommand{\inlinemaketitle}{{\let\newpage\relax\maketitle}}
+
 
 % Current implemented Enviroments:
 %     - Theorem (Blue)
