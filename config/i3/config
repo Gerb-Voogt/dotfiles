@@ -16,7 +16,7 @@ workspace_layout default
 workspace_auto_back_and_forth yes
 
 # Setting the font
-font pango:JetbrainsMono Nerd Font 0
+font pango:JetbrainsMono Nerd Font 8
 
 #border indicator on windows:
 new_window pixel 1
@@ -179,7 +179,7 @@ set $base      #1e1e2e
 set $mantle    #181825
 set $crust     #11111b
 
-client.focused           $blue $blue $text $blue $blue
+client.focused           $blue $blue $base $blue $blue
 client.focused_inactive  $blue $blue $text $blue $base
 client.unfocused         $base $base $text $rosewater $base
 client.urgent            $peach $base $peach $overlay0  $peach
