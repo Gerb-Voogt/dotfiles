@@ -45,6 +45,7 @@ alias ls="exa"
 alias la="exa -lH"
 alias paim="xclip -selection clipboard -t image/png -o >" # Paste images in terminal
 alias tmux="tmux -u"
+alias vimdiff="nvim -d"
 
 alias yeet="rm -rf"
 alias so="source"
