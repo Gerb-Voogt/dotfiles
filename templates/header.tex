@@ -1,14 +1,16 @@
 \usepackage[margin=2cm]{geometry}
 \usepackage{xcolor}
 \usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amsfonts}
 \usepackage{centernot}
 \usepackage{tabularx}
 \usepackage{listings}
-\usepackage{bondgraphs}
+% \usepackage{bondgraphs}
 \usepackage[format=plain,
             labelfont={bf,it},
             textfont=it]{caption}
-
+% \usepackage{bbold}
 \usepackage{hyperref}
 \usepackage{cleveref}
 \usepackage{fancyhdr}
@@ -33,6 +35,8 @@
 \DeclareMathOperator*{\argmin}{arg\,min}
 
 \newcommand{\inlinemaketitle}{{\let\newpage\relax\maketitle}}
+
+\renewcommand{\familydefault}{\sfdefault}
 
 
 % Current implemented Enviroments:

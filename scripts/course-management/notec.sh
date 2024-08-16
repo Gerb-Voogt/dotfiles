@@ -69,7 +69,8 @@ if [[ $document_title != 0 ]]; then
 		echo "\\date{Compilation Date: \\today}" >> main.md
 	fi
 
-	echo "\\maketitle" >> main.md
+	echo "\\inlinemaketitle" >> main.md
+	# echo "\\nopagebreak" >> main.md
 fi
 
 if [[ $generate_toc != 0 ]]; then
@@ -115,11 +116,11 @@ if [[ -f "./$bibliography_file" ]]; then
 	else
 		# Add the bibliography if it is present
 		mdpp main.md
-		pandoc --citeproc --bibliography "./$bibliography_file" --csl $csl_path main.md.p -H ~/uni/templates/markdown-pdf/header.tex -o $output_file_name
+		pandoc --citeproc --bibliography "./$bibliography_file" --csl $csl_path --pdf-engine "xelatex" main.md.p -H ~/uni/templates/markdown-pdf/header.tex -o $output_file_name 
 	fi
 else # Bib file is not present
 	mdpp main.md
-	pandoc main.md.p -H ~/uni/templates/markdown-pdf/header.tex -o $output_file_name
+	pandoc --pdf-engine "xelatex" main.md.p -H ~/uni/templates/markdown-pdf/header.tex -o $output_file_name 
 fi
 
 if [[ -z $delete_main_md ]]; then
