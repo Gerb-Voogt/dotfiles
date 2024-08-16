@@ -86,6 +86,28 @@ return {
             { delimiters = "<>" }
         )
     ),
+    s({trig="equation", dscr="A LaTeX equation environment"},
+        fmt( -- The snippet code actually looks like the equation environment it produces.
+            [[
+            \begin{equation}
+            <>
+            \end{equation}
+            ]],
+            { i(1) },
+            { delimiters = "<>" }
+        )
+    ),
+    s({trig="equation*", dscr="A LaTeX equation* environment"},
+        fmt( -- The snippet code actually looks like the equation environment it produces.
+            [[
+            \begin{equation*}
+            <>
+            \end{equation*}
+            ]],
+            { i(1) },
+            { delimiters = "<>" }
+        )
+    ),
     s({trig="$$", dscr="A LaTeX gather environment", snippetType="autosnippet"},
         fmt( 
             [[
