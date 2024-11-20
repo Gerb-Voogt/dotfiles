@@ -1,9 +1,9 @@
-# exec feh --bg-fill --zoom fill /home/gerben/theme/wallpapers/ghibli-3-1920x1080.png
-exec feh --bg-fill --zoom fill /home/gerben/theme/wallpapers/anime-4.png
+#exec feh --bg-fill --zoom fill /home/gerben/theme/wallpapers/ghibli-3-1920x1080.png
+exec feh --bg-fill --zoom fill /home/gerben/theme/wallpapers/anime-3.jpg
 # anime-wallpaper-01.jpg
 
 # Set lockscreen
-exec xss-lock --transfer-sleep-lock -- i3lock --nofork -i "/home/gerben/theme/wallpapers/ghibli-2-1920x1080.png"
+exec xss-lock --transfer-sleep-lock -- i3lock --nofork -i "/home/gerben/theme/wallpapers/ghibli-3-1920x1080.png"
 bindsym $mod+Shift+s exec i3lock -i /home/gerben/theme/wallpapers/ghibli-2-1920x1080.png --nofork
 
 # Start Dunst for notifications

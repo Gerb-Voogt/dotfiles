@@ -53,10 +53,9 @@ require('lazy').setup({
     'hrsh7th/nvim-cmp',
     dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip'},
   },
-  {
-    'ray-x/lsp_signature.nvim',
-  },
-
+  -- {
+  --   'ray-x/lsp_signature.nvim',
+  -- },
   { -- Adds git releated signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
     opts = {
@@ -246,69 +245,69 @@ require('lazy').setup({
     "folke/zen-mode.nvim",
   },
 
-  -- Setting up nvim debug adapter protocol
-  {
-    "mfussenegger/nvim-dap",
-    dependencies = {
-      "mfussenegger/nvim-dap-python",
-      "rcarriga/nvim-dap-ui",
-      "theHamsta/nvim-dap-virtual-text",
-      "nvim-neotest/nvim-nio",
-    },
-     config = function()
-      local dap = require "dap"
-      local ui = require "dapui"
-
-      require("dapui").setup()
-      require("dap-python").setup("python3")
-
-
-      require("nvim-dap-virtual-text").setup {
-        -- This just tries to mitigate the chance that I leak tokens here. Probably won't stop it from happening...
-        display_callback = function(variable)
-          local name = string.lower(variable.name)
-          local value = string.lower(variable.value)
-          if name:match "secret" or name:match "api" or value:match "secret" or value:match "api" then
-            return "*****"
-          end
-
-          if #variable.value > 15 then
-            return " " .. string.sub(variable.value, 1, 15) .. "... "
-          end
-
-          return " " .. variable.value
-        end,
-      }
-
-      vim.keymap.set("n", "<space>b", dap.toggle_breakpoint)
-      vim.keymap.set("n", "<space>gb", dap.run_to_cursor)
-
-      -- Eval var under cursor
-      vim.keymap.set("n", "<space>?", function()
-        require("dapui").eval(nil, { enter = true })
-      end)
-
-      vim.keymap.set("n", "<F1>", dap.continue)
-      vim.keymap.set("n", "<F2>", dap.step_into)
-      vim.keymap.set("n", "<F3>", dap.step_over)
-      vim.keymap.set("n", "<F4>", dap.step_out)
-      vim.keymap.set("n", "<F5>", dap.step_back)
-      vim.keymap.set("n", "<F13>", dap.restart)
-
-      dap.listeners.before.attach.dapui_config = function()
-        ui.open()
-      end
-      dap.listeners.before.launch.dapui_config = function()
-        ui.open()
-      end
-      dap.listeners.before.event_terminated.dapui_config = function()
-        ui.close()
-      end
-      dap.listeners.before.event_exited.dapui_config = function()
-        ui.close()
-      end
-    end,
-  },
+  -- -- Setting up nvim debug adapter protocol
+  -- {
+  --   "mfussenegger/nvim-dap",
+  --   dependencies = {
+  --     "mfussenegger/nvim-dap-python",
+  --     "rcarriga/nvim-dap-ui",
+  --     "theHamsta/nvim-dap-virtual-text",
+  --     "nvim-neotest/nvim-nio",
+  --   },
+  --    config = function()
+  --     local dap = require "dap"
+  --     local ui = require "dapui"
+  --
+  --     require("dapui").setup()
+  --     require("dap-python").setup("python3")
+  --
+  --
+  --     require("nvim-dap-virtual-text").setup {
+  --       -- This just tries to mitigate the chance that I leak tokens here. Probably won't stop it from happening...
+  --       display_callback = function(variable)
+  --         local name = string.lower(variable.name)
+  --         local value = string.lower(variable.value)
+  --         if name:match "secret" or name:match "api" or value:match "secret" or value:match "api" then
+  --           return "*****"
+  --         end
+  --
+  --         if #variable.value > 15 then
+  --           return " " .. string.sub(variable.value, 1, 15) .. "... "
+  --         end
+  --
+  --         return " " .. variable.value
+  --       end,
+  --     }
+  --
+  --     vim.keymap.set("n", "<space>b", dap.toggle_breakpoint)
+  --     vim.keymap.set("n", "<space>gb", dap.run_to_cursor)
+  --
+  --     -- Eval var under cursor
+  --     vim.keymap.set("n", "<space>?", function()
+  --       require("dapui").eval(nil, { enter = true })
+  --     end)
+  --
+  --     vim.keymap.set("n", "<F1>", dap.continue)
+  --     vim.keymap.set("n", "<F2>", dap.step_into)
+  --     vim.keymap.set("n", "<F3>", dap.step_over)
+  --     vim.keymap.set("n", "<F4>", dap.step_out)
+  --     vim.keymap.set("n", "<F5>", dap.step_back)
+  --     vim.keymap.set("n", "<F13>", dap.restart)
+  --
+  --     dap.listeners.before.attach.dapui_config = function()
+  --       ui.open()
+  --     end
+  --     dap.listeners.before.launch.dapui_config = function()
+  --       ui.open()
+  --     end
+  --     dap.listeners.before.event_terminated.dapui_config = function()
+  --       ui.close()
+  --     end
+  --     dap.listeners.before.event_exited.dapui_config = function()
+  --       ui.close()
+  --     end
+  --   end,
+  -- },
 },
 {})
 -- [[ Setting options ]]
@@ -731,36 +730,36 @@ require("lualine").setup({
     },
 })
 
-require'lsp_signature'.setup({
-  debug = false, -- set to true to enable debug logging
-  log_path = vim.fn.stdpath("cache") .. "/lsp_signature.log", -- log dir when debug is on
-  -- default is  ~/.cache/nvim/lsp_signature.log
-  verbose = false,
-  bind = true, -- This is mandatory, otherwise border config won't get registered.
-  doc_lines = 0, -- set to 0 if you DO NOT want any API comments be shown
-  max_height = 12, -- max height of signature floating_window
-  max_width = 80, -- max_width of signature floating_window, line will be wrapped if exceed max_width
-  -- the value need >= 40
-  wrap = true, -- allow doc/signature text wrap inside floating_window, useful if your lsp return doc/sig is too long
-  floating_window = true, -- show hint in a floating window, set to false for virtual text only mode
-
-  floating_window_above_cur_line = true, 
-
-  floating_window_off_x = 1, -- adjust float windows x position.
-                             -- can be either a number or function
-  floating_window_off_y = 0, -- adjust float windows y position. e.g -2 move window up 2 lines; 2 move down 2 lines
-                              -- can be either number or function, see examples
-  hint_enable = false, -- virtual hint enable
-  hint_prefix = "󰏚 ",  -- Panda for parameter, NOTE: for the terminal not support emoji, might crash
-  hint_scheme = "String",
-  hi_parameter = "LspSignatureActiveParameter", -- how your parameter will be highlight
-  handler_opts = {
-    border = "rounded"   -- double, rounded, single, shadow, none, or a table of borders
-  },
-
-  always_trigger = false, -- sometime show signature on new line or in middle of parameter can be confusing, set it to false for #58
-  auto_close_after = nil, -- autoclose signature float win after x sec, disabled if nil.
-  extra_trigger_chars = {}, -- Array of extra characters that will trigger signature completion, e.g., {"(", ","}
-  transparency = nil, -- disabled by default, allow floating win transparent value 1~100
-  toggle_key = nil, -- toggle signature on and off in insert mode,  e.g. toggle_key = '<M-x>'
-})
+-- require'lsp_signature'.setup({
+--   debug = false, -- set to true to enable debug logging
+--   log_path = vim.fn.stdpath("cache") .. "/lsp_signature.log", -- log dir when debug is on
+--   -- default is  ~/.cache/nvim/lsp_signature.log
+--   verbose = false,
+--   bind = true, -- This is mandatory, otherwise border config won't get registered.
+--   doc_lines = 0, -- set to 0 if you DO NOT want any API comments be shown
+--   max_height = 12, -- max height of signature floating_window
+--   max_width = 80, -- max_width of signature floating_window, line will be wrapped if exceed max_width
+--   -- the value need >= 40
+--   wrap = true, -- allow doc/signature text wrap inside floating_window, useful if your lsp return doc/sig is too long
+--   floating_window = true, -- show hint in a floating window, set to false for virtual text only mode
+--
+--   floating_window_above_cur_line = true, 
+--
+--   floating_window_off_x = 1, -- adjust float windows x position.
+--                              -- can be either a number or function
+--   floating_window_off_y = 0, -- adjust float windows y position. e.g -2 move window up 2 lines; 2 move down 2 lines
+--                               -- can be either number or function, see examples
+--   hint_enable = false, -- virtual hint enable
+--   hint_prefix = "󰏚 ",  -- Panda for parameter, NOTE: for the terminal not support emoji, might crash
+--   hint_scheme = "String",
+--   hi_parameter = "LspSignatureActiveParameter", -- how your parameter will be highlight
+--   handler_opts = {
+--     border = "rounded"   -- double, rounded, single, shadow, none, or a table of borders
+--   },
+--
+--   always_trigger = false, -- sometime show signature on new line or in middle of parameter can be confusing, set it to false for #58
+--   auto_close_after = nil, -- autoclose signature float win after x sec, disabled if nil.
+--   extra_trigger_chars = {}, -- Array of extra characters that will trigger signature completion, e.g., {"(", ","}
+--   transparency = nil, -- disabled by default, allow floating win transparent value 1~100
+--   toggle_key = nil, -- toggle signature on and off in insert mode,  e.g. toggle_key = '<M-x>'
+-- })

@@ -401,13 +401,13 @@ return {
             { delimiters = "<>" }
         )
     ),
-    s({trig="RR", dscr="latex Real numbers symbol", snippetType="autosnippet"},
-        fmt( 
-            "\\mathbb{R}<>",
-            { i(1) },
-            { delimiters = "<>" }
-        )
-    ),
+    -- s({trig="RR", dscr="latex Real numbers symbol", snippetType="autosnippet"},
+    --     fmt( 
+    --         "\\mathbb{R}<>",
+    --         { i(1) },
+    --         { delimiters = "<>" }
+    --     )
+    -- ),
     s({trig="ZZ", dscr="latex Integer  numbers symbol", snippetType="autosnippet"},
 
         fmt(
