@@ -368,6 +368,13 @@ return {
             { delimiters = "<>" }
         )
     ),
+    s({trig="mbf", dscr="latex boldsymbol", snippetType="autosnippet"},
+        fmt( 
+            "\\boldsymbol{<>}",
+            { i(1) },
+            { delimiters = "<>" }
+        )
+    ),
     s({trig="cdot", dscr="cdot", snippetType="autosnippet"},
         fmt( 
             "\\cdot <>",
