@@ -20,6 +20,42 @@ return {
     --------------------
     --- Enviroments  ---
     --------------------
+    s({trig="\\theorem", dscr="A makeshift boxed theorme environment"},
+        fmt( -- The snippet code actually looks like the equation environment it produces.
+            [[
+              \fbox{\parbox{\columnwidth}{
+              \textbf{Theorem \textnormal{(<>)}.}\textit{
+              <>
+              }}}
+            ]],
+            { i(1), i(2)},
+            { delimiters = "<>" }
+        )
+    ),
+    s({trig="\\definition", dscr="A makeshift boxed definition environment"},
+        fmt( -- The snippet code actually looks like the equation environment it produces.
+            [[
+              \fbox{\parbox{\columnwidth}{
+              \textbf{Definition \textnormal{(<>)}.}\textit{
+              <>
+              }}}
+            ]],
+            { i(1), i(2)},
+            { delimiters = "<>" }
+        )
+    ),
+    s({trig="\\example", dscr="A makeshift boxed example environment"},
+        fmt( -- The snippet code actually looks like the equation environment it produces.
+            [[
+              \fbox{\parbox{\columnwidth}{
+              \textbf{Example \textnormal{(<>)}.}
+              <>
+              }}
+            ]],
+            { i(1), i(2)},
+            { delimiters = "<>" }
+        )
+    ),
     s({trig="begin", dscr="A LaTeX environment"},
         fmt( -- The snippet code actually looks like the equation environment it produces.
             [[
