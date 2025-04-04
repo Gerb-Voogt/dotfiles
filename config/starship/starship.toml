@@ -28,46 +28,50 @@ style = 'bold blue'
 
 # Language Specific Settings
 [python]
-disabled = false
+disabled = true
 symbol = ' '
 
 [rust]
-disabled = false
+disabled = true
 symbol = ' '
 
 [haskell]
-disabled = false
+disabled = true
 symbol = ' '
 
 [julia]
-disabled = false
+disabled = true
 symbol = ' '
 
 [c]
-disabled = false
+disabled = true
 symbol = ' '
 style = 'bold cyan'
 
 [golang]
-disabled = false
+disabled = true
 symbol = ' '
 
 [lua]
-disabled = false
+disabled = true
 symbol = ' '
 
 [rlang]
 symbol = ' '
-disabled = false
+disabled = true
 
 [php]
 symbol = ' '
-disabled = false
+disabled = true
 
 [ruby]
 symbol = ' '
-disabled = false
+disabled = true
 
 [zig]
 symbol = ' '
-disabled = false
+disabled = true
+
+[docker_context]
+symbol = ' '
+disabled = true
