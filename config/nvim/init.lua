@@ -687,6 +687,14 @@ vim.o.sw = 4
 vim.o.ts = 4
 vim.o.expandtab = true
 vim.opt.expandtab = true
+vim.o.conceallevel = 0
+
+-- Markdown config
+vim.g.vim_markdown_folding_disabled = 1
+vim.g.tex_conceal = ""
+vim.g.vim_markdown_math = 1
+vim.g.vim_markdown_frontmatter = 1
+
 
 require('aerial').setup({
   on_attach = function(bufnr)
