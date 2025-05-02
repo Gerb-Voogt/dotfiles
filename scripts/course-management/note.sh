@@ -45,6 +45,11 @@ fi
 if [[ ! -f $working_dir/$1 ]]; then
 	echo "File $1 does not exist"
 	touch $1
+	echo "---" >> $1
+	echo "documentclass: article" >> $1
+	echo "classoption: twocolumn" >> $1
+	echo "---" >> $1
+	echo "" >> $1
 	echo "# Title" >> $1
 	echo "..." >> $1
 fi

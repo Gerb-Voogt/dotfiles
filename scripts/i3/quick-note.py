@@ -8,7 +8,7 @@ from rofi import rofi
 NOTES_DIR = os.getenv("NOTES_DIR", "/home/gerben/uni/Vault-MSc")
 HOME = os.getenv("HOME");
 EDITOR = os.getenv("EDITOR");
-NOTE_TEMPLATE = "# Title\n..."
+NOTE_TEMPLATE = "---\ndocumentclass: article\nclassoption: twocolumn\n---\n\n# Title\n..."
 
 
 def quick_note():
