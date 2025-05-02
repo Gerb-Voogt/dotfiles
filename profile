@@ -28,6 +28,18 @@ fzfcd() {
     fi
 }
 
+# Function to quickly view and open notes without leaving a bunch of pdf files floating around
+peek () {
+	if [[ "$1" == *.md ]] && [[ -f "$1" ]]; then
+		pdf_name=$(echo "$1" | sed "s/md/pdf/")
+		current_path=$(pwd)
+		notec $1 && zathura $pdf_name && rm -rf $pdf_name
+	else 
+		echo "Not a markdown file!"
+		return
+	fi
+}
+
 # Custom aliases
 alias matlab-cli='/home/gerben/.local/bin/matlab -nodesktop -softwareopengl -nosplash'
 alias cp-pwd='pwd | xclip -selection clipboard'

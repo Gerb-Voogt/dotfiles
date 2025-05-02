@@ -4,7 +4,7 @@ export ZSH="$HOME/.oh-my-zsh"
 
 
 set bell-style none
-ZSH_THEME=""
+ZSH_THEME="robbyrussell"
 
 plugins=(
 	# zsh-syntax-highlighting 
@@ -12,18 +12,8 @@ plugins=(
 )
 source $ZSH/oh-my-zsh.sh
 
-# Function to quickly view and open notes without leaving a bunch of pdf files floating around
-peek () {
-	if [[ "$1" == *.md ]] && [[ -f "$1" ]]; then
-		pdf_name=$(echo "$1" | sed "s/md/pdf/")
-		current_path=$(pwd)
-		notec $1 && zathura $pdf_name && rm -rf $pdf_name
-	else 
-		echo "Not a markdown file!"
-		return
-	fi
-}
-
+# Start starship
+# eval "$(starship init zsh)"
 
 # Custom shortcuts
 bindkey -s '^g' 'gitui -t mocha.ron\n'
@@ -31,7 +21,6 @@ bindkey -s '^f' 'fzfcd ~/uni\n'
 # bindkey -s '^o' 'tmuxifier load-window matlab\n'
 
 # Exports
-eval "$(starship init zsh)"
 
 export PATH="$HOME/.tmuxifier/bin:$PATH"
 export NOTES_DIR="/home/gerben/uni/Vault-MSc"
@@ -77,7 +66,7 @@ alias juliaclient='julia --startup-file=no -e "using DaemonMode; runargs()"'
 
 [ -f "/home/gerben/.ghcup/env" ] && source "/home/gerben/.ghcup/env" # ghcup-env
 
-$DOTFILESPATH/scripts/tmux/haiku
+# $DOTFILESPATH/scripts/tmux/haiku
 
 # Export for golang
 export PATH=$PATH:/usr/local/go/bin
