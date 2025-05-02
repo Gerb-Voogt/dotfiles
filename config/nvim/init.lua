@@ -85,15 +85,15 @@ require('lazy').setup({
     end,
   },
 
-  {
-    'stevearc/aerial.nvim',
-    opts = {},
-    -- Optional dependencies
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-tree/nvim-web-devicons"
-    },
-  },
+  -- {
+  --   'stevearc/aerial.nvim',
+  --   opts = {},
+  --   -- Optional dependencies
+  --   dependencies = {
+  --     "nvim-treesitter/nvim-treesitter",
+  --     "nvim-tree/nvim-web-devicons"
+  --   },
+  -- },
   { -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
     -- See `:help lualine.txt`
@@ -179,6 +179,32 @@ require('lazy').setup({
   {
     'simrat39/symbols-outline.nvim'
   },
+  {
+    'folke/trouble.nvim',
+    opts = {},
+    modes = {
+      test = {
+        mode = "diagnostics",
+        preview = {
+          type = "split",
+          relative = "win",
+          position = "right",
+          size = 0.3,
+        },
+      },
+    },
+    cmd = "Trouble",
+    keys = {
+      {
+        "<leader><tab>",
+        "<cmd>Trouble symbols toggle focus=false<cr>",
+      },
+      {
+        "<leader>t",
+        "<cmd>Trouble diagnostics toggle focus=true<cr>",
+      },
+    }
+  },
 
   -- {
   --   "epwalsh/obsidian.nvim",
@@ -228,9 +254,6 @@ require('lazy').setup({
   'mechatroner/rainbow_csv',
   -- 'lervag/vimtex',
 
-  -- Syntax highlighting for just files
-  'vmchale/just-vim',
-
   -- REPL driven workflow from vim
   'jpalardy/vim-slime',
 
@@ -244,7 +267,6 @@ require('lazy').setup({
   {
     "folke/zen-mode.nvim",
   },
-
   -- -- Setting up nvim debug adapter protocol
   -- {
   --   "mfussenegger/nvim-dap",
@@ -696,14 +718,14 @@ vim.g.vim_markdown_math = 1
 vim.g.vim_markdown_frontmatter = 1
 
 
-require('aerial').setup({
-  on_attach = function(bufnr)
--- optionally use on_attach to set keymaps when aerial has attached to a buffer
-    -- Jump forwards/backwards with '{' and '}'
-    vim.keymap.set('n', '<leader>[', '<cmd>AerialNavToggle<CR>', {buffer = bufnr})
-  end
-})
-vim.keymap.set('n', '<leader><tab>', '<cmd>AerialToggle<cr>')
+-- require('aerial').setup({
+--   on_attach = function(bufnr)
+-- -- optionally use on_attach to set keymaps when aerial has attached to a buffer
+--     -- Jump forwards/backwards with '{' and '}'
+--     vim.keymap.set('n', '<leader>[', '<cmd>AerialNavToggle<CR>', {buffer = bufnr})
+--   end
+-- })
+-- vim.keymap.set('n', '<leader><tab>', '<cmd>AerialToggle<cr>')
 
 
 -- Configuring slime

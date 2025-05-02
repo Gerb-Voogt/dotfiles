@@ -32,6 +32,18 @@ return {
             { delimiters = "<>" }
         )
     ),
+    s({trig="\\lemma", dscr="A makeshift boxed lemma environment"},
+        fmt( -- The snippet code actually looks like the equation environment it produces.
+            [[
+              \fbox{\parbox{\columnwidth}{
+              \textbf{Lemma \textnormal{(<>)}.}\textit{
+              <>
+              }}}
+            ]],
+            { i(1), i(2)},
+            { delimiters = "<>" }
+        )
+    ),
     s({trig="\\definition", dscr="A makeshift boxed definition environment"},
         fmt( -- The snippet code actually looks like the equation environment it produces.
             [[
@@ -49,6 +61,42 @@ return {
             [[
               \fbox{\parbox{\columnwidth}{
               \textbf{Example \textnormal{(<>)}.}
+              <>
+              }}
+            ]],
+            { i(1), i(2)},
+            { delimiters = "<>" }
+        )
+    ),
+    s({trig="\\proof", dscr="A makeshift boxed proof environment"},
+        fmt( -- The snippet code actually looks like the equation environment it produces.
+            [[
+              \fbox{\parbox{\columnwidth}{
+              \textbf{Proof \textnormal{(<>)}.}
+              <>
+              }}
+            ]],
+            { i(1), i(2)},
+            { delimiters = "<>" }
+        )
+    ),
+    s({trig="\\problem", dscr="A makeshift boxed problem environment"},
+        fmt( -- The snippet code actually looks like the equation environment it produces.
+            [[
+              \fbox{\parbox{\columnwidth}{
+              \textbf{Problem \textnormal{(<>)}.}\textit{
+              <>
+              }}}
+            ]],
+            { i(1), i(2)},
+            { delimiters = "<>" }
+        )
+    ),
+    s({trig="\\note", dscr="A makeshift boxed note environment"},
+        fmt( -- The snippet code actually looks like the equation environment it produces.
+            [[
+              \fbox{\parbox{\columnwidth}{
+              \textbf{Note \textnormal{(<>)}.}
               <>
               }}
             ]],
@@ -407,6 +455,13 @@ return {
     s({trig="mbf", dscr="latex boldsymbol", snippetType="autosnippet"},
         fmt( 
             "\\boldsymbol{<>}",
+            { i(1) },
+            { delimiters = "<>" }
+        )
+    ),
+    s({trig="mbb", dscr="latex blackboard bold letters", snippetType="autosnippet"},
+        fmt( 
+            "\\mathbb{<>}",
             { i(1) },
             { delimiters = "<>" }
         )
