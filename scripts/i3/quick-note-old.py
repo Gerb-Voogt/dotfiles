@@ -5,7 +5,7 @@ import datetime
 from rofi import rofi
 
 
-NOTES_DIR = os.getenv("NOTES_DIR", "/home/gerben/uni/Vault-MSc")
+NOTES_DIR = os.getenv("NOTES_DIR", "/home/gerben/uni/Thesis-vault/")
 HOME = os.getenv("HOME");
 EDITOR = os.getenv("EDITOR");
 NOTE_TEMPLATE = "---\ndocumentclass: article\nclassoption: twocolumn\n---\n\n# Title\n..."
