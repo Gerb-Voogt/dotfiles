@@ -39,9 +39,10 @@ bindsym $mod+d exec rofi -show drun
 bindsym $mod+Shift+d exec rofi -show window
 bindsym $mod+Control+d exec rofi -show run
 bindsym $mod+Control+p exec /home/gerben/uni/dotfiles/scripts/i3/find_pdfs.sh
+bindsym $mod+Control+o exec /home/gerben/uni/dotfiles/scripts/i3/find_papers.sh
 bindsym $mod+Control+k exec /home/gerben/uni/dotfiles/scripts/course-management/compile_notes.py
 bindsym $mod+Control+q exec /home/gerben/uni/dotfiles/scripts/i3/power-manager-menu.sh
-bindsym $mod+Control+n exec python3 /home/gerben/uni/dotfiles/scripts/i3/quick-note.sh
+bindsym $mod+Control+n exec bash /home/gerben/uni/dotfiles/scripts/i3/quick-note.sh
 
 bindsym $mod+Return exec alacritty &
 bindsym $mod+backslash exec zen &
