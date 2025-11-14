@@ -16,8 +16,10 @@ source $ZSH/oh-my-zsh.sh
 # eval "$(starship init zsh)"
 
 # Custom shortcuts
-bindkey -s '^g' 'gitui -t mocha.ron\n'
+# bindkey -s '^g' 'gitui -t mocha.ron\n'
+bindkey -s '^g' 'lazygit\n'
 bindkey -s '^f' 'fzfcd ~/uni\n'
+bindkey -s '^o' 'fzf | xargs nvim\n'
 # bindkey -s '^o' 'tmuxifier load-window matlab\n'
 
 # Exports
@@ -33,8 +35,8 @@ export MATLABPATH="/home/gerben/apps/matlabR2023b/bin"
 # export DASHT_DOCSETS_DIR="/home/gerb/.local/share/Zeal/Zeal/docsets/"
 
 # Custom aliases
-alias ls="exa"
-alias la="exa -lH"
+# alias ls="exa"
+# alias la="exa -lH"
 alias paim="xclip -selection clipboard -t image/png -o >" # Paste images in terminal
 alias tmux="tmux -u"
 alias vimdiff="nvim -d"
