@@ -73,18 +73,25 @@ require('lazy').setup({
   { -- Theme inspired by Atom
     'navarasu/onedark.nvim',
     priority = 1000,
-    config = function()
-      vim.cmd.colorscheme 'onedark'
-    end,
+    -- config = function()
+    --   vim.cmd.colorscheme 'onedark'
+    -- end,
   },
   { -- Catppuccin theme
     'catppuccin/nvim',
     name = 'catppuccin',
-    config = function()
-      vim.cmd.colorscheme 'catppuccin-mocha'
-    end,
+    -- config = function()
+    --   vim.cmd.colorscheme 'catppuccin-mocha'
+    -- end,
   },
-
+  -- lua/plugins/rose-pine.lua
+  {
+    "rose-pine/neovim",
+    name = "rose-pine",
+    config = function()
+      vim.cmd.colorscheme "rose-pine-moon"
+    end
+  },
   -- {
   --   'stevearc/aerial.nvim',
   --   opts = {},
@@ -205,6 +212,46 @@ require('lazy').setup({
       },
     }
   },
+  {
+    "epwalsh/obsidian.nvim",
+    version = "*",  -- recommended, use latest release instead of latest commit
+    lazy = true,
+    ft = "markdown",
+    -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
+    -- event = {
+    --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
+    --   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/*.md"
+    --   -- refer to `:h file-pattern` for more examples
+    --   "BufReadPre path/to/my-vault/*.md",
+    --   "BufNewFile path/to/my-vault/*.md",
+    -- },
+    dependencies = {
+      -- Required.
+      "nvim-lua/plenary.nvim",
+
+      -- see below for full list of optional dependencies 👇
+    },
+    opts = {
+      workspaces = {
+        {
+          name = "work",
+          path = "~/uni/Thesis-vault/",
+        },
+      },
+      ui = {
+        enable = false,
+      },
+    },
+  },
+  {
+    "lervag/vimtex",
+    lazy = false,     -- we don't want to lazy load VimTeX
+    -- tag = "v2.15", -- uncomment to pin to a specific release
+    init = function()
+      -- VimTeX configuration goes here, e.g.
+      vim.g.vimtex_view_method = "zathura"
+    end
+  },
 
   -- {
   --   "epwalsh/obsidian.nvim",
@@ -253,6 +300,12 @@ require('lazy').setup({
   'mbbill/undotree',
   'mechatroner/rainbow_csv',
   -- 'lervag/vimtex',
+  {
+    'vim-pandoc/vim-pandoc',
+    dependencies = {
+      'aspeddro/cmp-pandoc.nvim',
+    },
+  },
 
   -- REPL driven workflow from vim
   'jpalardy/vim-slime',
@@ -543,6 +596,39 @@ local on_attach = function(_, bufnr)
   end, { desc = 'Format current buffer with LSP' })
 end
 
+-- I am putting this here as a quick fix but do this properly later
+local nmap = function(keys, func, desc)
+  if desc then
+    desc = 'LSP: ' .. desc
+  end
+
+  vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+end
+nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+nmap('<leader>rf', vim.lsp.buf.format, '[R]e[F]ormat')
+nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+
+nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
+nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
+nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+
+-- See `:help K` for why this keymap
+nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
+nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+
+-- Lesser used LSP functionality
+nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
+nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
+nmap('<leader>wl', function()
+  print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+end, '[W]orkspace [L]ist Folders')
+
+
+
 -- Enable the following language servers
 --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
 --
@@ -566,7 +652,7 @@ local servers = {
     filetype = { "matlab" },
     matlab = {
       indexWorkspace = false,
-      installPath = "/usr/local/MATLAB/R2023a/",
+      installPath = "~/.local/bin/matlab",
       matlabConnectionTiming = 'onStart',
       telemetry = false,
     },
@@ -574,11 +660,11 @@ local servers = {
 }
 
 require("lspconfig").matlab_ls.setup({
-  cmd = { "~/.local/share/nvim/mason/bin/matlab-language-server", "--stdio" },
+  cmd = { "/home/gerben/.local/share/nvim/mason/bin/matlab-language-server", "--stdio" },
   filetype = { "matlab" },
   matlab = {
     indexWorkspace = false,
-    installPath = "/usr/local/MATLAB/R2023a/",
+    installPath = "~/.local/bin/matlab",
     matlabConnectionTiming = 'onStart',
     telemetry = false,
   },
@@ -626,15 +712,15 @@ mason_lspconfig.setup {
   ensure_installed = vim.tbl_keys(servers),
 }
 
-mason_lspconfig.setup_handlers {
+require("mason-lspconfig").setup({
   function(server_name)
-    require('lspconfig')[server_name].setup {
+    require('lspconfig')[server_name].setup({
       capabilities = capabilities,
       on_attach = on_attach,
       settings = servers[server_name],
-    }
+    })
   end,
-}
+})
 
 -- nvim-cmp setup
 local cmp = require 'cmp'
@@ -694,6 +780,8 @@ cmp.setup {
   sources = {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
+    { name = 'cmp_pandoc' },
+    { name = 'obsidian' },
   },
 }
 require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/luasnip/"})
@@ -712,10 +800,10 @@ vim.opt.expandtab = true
 vim.o.conceallevel = 0
 
 -- Markdown config
-vim.g.vim_markdown_folding_disabled = 1
-vim.g.tex_conceal = ""
-vim.g.vim_markdown_math = 1
-vim.g.vim_markdown_frontmatter = 1
+-- vim.g.vim_markdown_folding_disabled = 0
+-- vim.g.tex_conceal = ""
+-- vim.g.vim_markdown_math = 1
+-- vim.g.vim_markdown_frontmatter = 1
 
 
 -- require('aerial').setup({
@@ -759,6 +847,21 @@ require("lualine").setup({
         }
     },
 })
+
+require'cmp_pandoc'.setup()
+vim.g["pandoc#modules#disabled"] = { "folding" }
+
+-- This is a bit of a hacky workaround but this is to force
+-- markdown file to not be opened as pandoc file but as markdown files.
+-- Markdown files have better syntax highlighting but I want the autocomplete for
+-- the citation keys through pandoc.
+vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
+  pattern = "*.md",
+  callback = function()
+    vim.bo.filetype = "markdown"
+  end,
+})
+
 
 -- require'lsp_signature'.setup({
 --   debug = false, -- set to true to enable debug logging

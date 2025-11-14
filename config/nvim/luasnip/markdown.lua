@@ -104,6 +104,18 @@ return {
             { delimiters = "<>" }
         )
     ),
+    s({trig="\\remark", dscr="A makeshift boxed remark environment"},
+        fmt( -- The snippet code actually looks like the equation environment it produces.
+            [[
+              \fbox{\parbox{\columnwidth}{
+              \textbf{Remark.}
+              <>
+              }}
+            ]],
+            { i(1) },
+            { delimiters = "<>" }
+        )
+    ),
     s({trig="begin", dscr="A LaTeX environment"},
         fmt( -- The snippet code actually looks like the equation environment it produces.
             [[
@@ -577,189 +589,189 @@ return {
             { delimiters = "<>" }
         )
     ),
-    s({trig="@a", dscr="latex alpha symbol", snippetType="autosnippet"},
+    s({trig="@a", dscr="latex alpha symbol"},
         fmt(
             "\\alpha<>",
             { i(1) },
             { delimiters = "<>" }
         )
     ),
-    s({trig="@b", dscr="latex beta symbol", snippetType="autosnippet"},
+    s({trig="@b", dscr="latex beta symbol"},
         fmt(
             "\\beta<>",
             { i(1) },
             { delimiters = "<>" }
         )
     ),
-    s({trig="@g", dscr="latex alpha symbol", snippetType="autosnippet"},
+    s({trig="@g", dscr="latex alpha symbol"},
         fmt( 
             "\\gamma<>",
             { i(1) },
             { delimiters = "<>" }
         )
     ),
-    s({trig="@d", dscr="latex delta symbol", snippetType="autosnippet"},
+    s({trig="@d", dscr="latex delta symbol"},
         fmt(
             "\\delta<>",
             { i(1) },
             { delimiters = "<>" }
         )
     ),
-    s({trig="@D", dscr="latex Delta symbol", snippetType="autosnippet"},
+    s({trig="@D", dscr="latex Delta symbol"},
         fmt(
             "\\Delta<>",
             { i(1) },
             { delimiters = "<>" }
         )
     ),
-    s({trig="@e", dscr="latex epsilon symbol", snippetType="autosnippet"},
+    s({trig="@e", dscr="latex epsilon symbol"},
         fmt( 
             "\\varepsilon<>",
             { i(1) },
             { delimiters = "<>" }
         )
     ),
-    s({trig="@z", dscr="latex zeta symbol", snippetType="autosnippet"},
+    s({trig="@z", dscr="latex zeta symbol"},
         fmt( 
             "\\zeta<>",
             { i(1) },
             { delimiters = "<>" }
         )
     ),
-    s({trig="@h", dscr="latex eta symbol", snippetType="autosnippet"},
+    s({trig="@h", dscr="latex eta symbol"},
         fmt(
             "\\eta<>",
             { i(1) },
             { delimiters = "<>" }
         )
     ),
-    s({trig="@u", dscr="latex theta symbol", snippetType="autosnippet"},
+    s({trig="@u", dscr="latex theta symbol"},
         fmt(
             "\\theta<>",
             { i(1) },
             { delimiters = "<>" }
         )
     ),
-    s({trig="@k", dscr="latex kappa symbol", snippetType="autosnippet"},
+    s({trig="@k", dscr="latex kappa symbol"},
         fmt(
             "\\kappa<>",
             { i(1) },
             { delimiters = "<>" }
         )
     ),
-    s({trig="@l", dscr="latex lambda symbol", snippetType="autosnippet"},
+    s({trig="@l", dscr="latex lambda symbol"},
         fmt(
             "\\lambda<>",
             { i(1) },
             { delimiters = "<>" }
         )
     ),
-    s({trig="@L", dscr="latex Lambda symbol", snippetType="autosnippet"},
+    s({trig="@L", dscr="latex Lambda symbol"},
         fmt(
             "\\Lambda<>",
             { i(1) },
             { delimiters = "<>" }
         )
     ),
-    s({trig="@m", dscr="latex mu symbol", snippetType="autosnippet"},
+    s({trig="@m", dscr="latex mu symbol"},
         fmt(
             "\\mu<>",
             { i(1) },
             { delimiters = "<>" }
         )
     ),
-    s({trig="@n", dscr="latex nu symbol", snippetType="autosnippet"},
+    s({trig="@n", dscr="latex nu symbol"},
         fmt(
             "\\nu<>",
             { i(1) },
             { delimiters = "<>" }
         )
     ),
-    s({trig="@x", dscr="latex xi symbol", snippetType="autosnippet"},
+    s({trig="@x", dscr="latex xi symbol"},
         fmt(
             "\\xi<>",
             { i(1) },
             { delimiters = "<>" }
         )
     ),
-    s({trig="@p", dscr="latex pi symbol", snippetType="autosnippet"},
+    s({trig="@p", dscr="latex pi symbol"},
         fmt(
             "\\pi<>",
             { i(1) },
             { delimiters = "<>" }
         )
     ),
-    s({trig="@P", dscr="latex Pi symbol", snippetType="autosnippet"},
+    s({trig="@P", dscr="latex Pi symbol"},
         fmt(
             "\\Pi<>",
             { i(1) },
             { delimiters = "<>" }
         )
     ),
-    s({trig="@r", dscr="latex rho symbol", snippetType="autosnippet"},
+    s({trig="@r", dscr="latex rho symbol"},
         fmt( 
             "\\rho<>",
             { i(1) },
             { delimiters = "<>" }
         )
     ),
-    s({trig="@s", dscr="latex sigma symbol", snippetType="autosnippet"},
+    s({trig="@s", dscr="latex sigma symbol"},
         fmt( 
             "\\sigma<>",
             { i(1) },
             { delimiters = "<>" }
         )
     ),
-    s({trig="@S", dscr="latex Sigma symbol", snippetType="autosnippet"},
+    s({trig="@S", dscr="latex Sigma symbol"},
         fmt( 
             "\\Sigma<>",
             { i(1) },
             { delimiters = "<>" }
         )
     ),
-    s({trig="@t", dscr="latex tau symbol", snippetType="autosnippet"},
+    s({trig="@t", dscr="latex tau symbol"},
         fmt(
             "\\tau<>",
             { i(1) },
             { delimiters = "<>" }
         )
     ),
-    s({trig="@f", dscr="latex phi symbol", snippetType="autosnippet"},
+    s({trig="@f", dscr="latex phi symbol"},
         fmt( 
             "\\phi<>",
             { i(1) },
             { delimiters = "<>" }
         )
     ),
-    s({trig="@F", dscr="latex Phi symbol", snippetType="autosnippet"},
+    s({trig="@F", dscr="latex Phi symbol"},
         fmt(
             "\\Phi<>",
             { i(1) },
             { delimiters = "<>" }
         )
     ),
-    s({trig="@y", dscr="latex psi symbol", snippetType="autosnippet"},
+    s({trig="@y", dscr="latex psi symbol"},
         fmt(
             "\\psi<>",
             { i(1) },
             { delimiters = "<>" }
         )
     ),
-    s({trig="@Y", dscr="latex Psi symbol", snippetType="autosnippet"},
+    s({trig="@Y", dscr="latex Psi symbol"},
         fmt(
             "\\Psi<>",
             { i(1) },
             { delimiters = "<>" }
         )
     ),
-    s({trig="@o", dscr="latex omega symbol", snippetType="autosnippet"},
+    s({trig="@o", dscr="latex omega symbol"},
         fmt(
             "\\omega<>",
             { i(1) },
             { delimiters = "<>" }
         )
     ),
-    s({trig="@O", dscr="latex Omega symbol", snippetType="autosnippet"},
+    s({trig="@O", dscr="latex Omega symbol"},
         fmt(
             "\\Omega<>",
             { i(1) },

@@ -6,6 +6,6 @@ return {
 	'akinsho/bufferline.nvim',
 	'nvim-tree/nvim-web-devicons',
 	'folke/trouble.nvim',
-	'preservim/vim-markdown'
+	-- 'preservim/vim-markdown'
 }
 
