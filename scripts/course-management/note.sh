@@ -1,8 +1,9 @@
 #!/usr/bin/bash
 
 working_dir=$(pwd)
+template_type="default"
 
-while getopts "dh" opt; do
+while getopts "dht:" opt; do
 	case $opt in
 		d) # Supress deletion of combine md file
 			delete_pdf=1
@@ -12,7 +13,11 @@ while getopts "dh" opt; do
 			echo "Flags:"
 			echo "-h: Prints the help menu"
 			echo "-d: Delete the generated pdf file"
+			echo "-t: Use alternative header template (defualt or paper)"
 			exit 0;
+			;;
+		t) # template file selection
+			template_type=$OPTARG
 			;;
 		\?)
 			echo "Invalid flag: $OPTARG"
@@ -42,7 +47,7 @@ if [[ ! -z $tmux_running ]]; then
 	tmux rename-window "Note"
 fi
 
-if [[ ! -f $working_dir/$1 ]]; then
+if [[ ! -f "$working_dir/$1" && "$template_type" == "default" ]]; then
 	echo "File $1 does not exist"
 	touch $1
 	echo "---" >> $1
@@ -52,9 +57,11 @@ if [[ ! -f $working_dir/$1 ]]; then
 	echo "" >> $1
 	echo "# Title" >> $1
 	echo "..." >> $1
+elif [[ ! -f $working_dir/$1 && "$template_type" == "paper" ]]; then
+	cat /home/gerben/uni/templates/markdown-pdf/template.md >> $1
 fi
 
-notec $1
+notec -H $template_type $1
 zathura "$working_dir/$note_pdf_name" &
 nvim -c "set wrap" -c "set spell" -c "autocmd BufWritePost $1 !notec $1" $1
 

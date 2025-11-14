@@ -15,8 +15,8 @@ for i in "${!pdf_names[@]}"; do
     fi
 done
 
-# Open with zathura if selection not empty
+# Open with sioyek if selection not empty
 if [[ -n "$selected_file" ]]; then
-    nohup zathura "$selected_file" >/dev/null 2>&1 &
+    nohup sioyek --new-window "$selected_file" >/dev/null 2>&1 &
 fi
 

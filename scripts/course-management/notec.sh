@@ -6,8 +6,9 @@ author="Gerb"
 document_title=0
 generate_toc=0
 document_date=0
+template="default"
 
-while getopts "a:t:s:o:m:hdc" opt; do
+while getopts "a:t:H:s:o:m:hdc" opt; do
 	case $opt in
 		o) # Rename output file
 			output_file_name=$OPTARG
@@ -26,6 +27,9 @@ while getopts "a:t:s:o:m:hdc" opt; do
 			;;
 		a) # Add author and title details to compilation
 			author=$OPTARG
+			;;
+		H) # select template to use
+			template=$OPTARG
 			;;
 		c) # Generate a Document TOC
 			generate_toc="true"
@@ -49,6 +53,7 @@ if [[ ! -z $print_help ]]; then
 	echo "-c: Setting this flag will result in a TOC being geenrated for the document"
 	echo "-o: Sets the name of the output pdf file"
 	echo "-d: Supress deletion of merged md file"
+	echo "-H: Header file to be used (can be default or paper)"
 	exit 0;
 fi
 
@@ -108,6 +113,17 @@ bibliography_file=$(ls | grep "\.bib")
 echo "$bibliography_file"
 csl_path="/home/gerben/uni/dotfiles/templates/IEEE.csl"
 
+template_dir="/home/gerben/uni/templates/markdown-pdf/"
+
+if [[ $template == "default" ]]; then
+	template_path="$template_dir/header.tex"
+elif [[ $template == "paper" ]]; then
+	template_path="$template_dir/paper.tex"
+else 
+	echo "Warning, template $template not known, defaulting to notes template"
+	template_path="$template_dir/header.tex"
+fi
+
 if [[ -f "./$bibliography_file" ]]; then
 	echo "adding bibliography!"
 	if [[ "$bibliography_file" =~ " " ]]; then
@@ -116,11 +132,11 @@ if [[ -f "./$bibliography_file" ]]; then
 	else
 		# Add the bibliography if it is present
 		mdpp main.md
-		pandoc --citeproc --bibliography "./$bibliography_file" --csl $csl_path --pdf-engine "tectonic" main.md.p -H ~/uni/templates/markdown-pdf/header.tex -o $output_file_name 
+		pandoc --bibliography "./$bibliography_file" --csl $csl_path --pdf-engine "pdflatex" main.md.p -H $template_path -o $output_file_name 
 	fi
 else # Bib file is not present
 	mdpp main.md
-	pandoc --pdf-engine "xelatex" main.md.p -H ~/uni/templates/markdown-pdf/header.tex -o $output_file_name 
+	pandoc --pdf-engine "pdflatex" main.md.p -H $template_path -o $output_file_name  --csl $csl_path
 fi
 
 if [[ -z $delete_main_md ]]; then
