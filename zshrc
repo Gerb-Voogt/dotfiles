@@ -76,3 +76,8 @@ export PATH=$PATH:/usr/local/go/bin
 # Export for Ruby/gems
 export GEM_HOME="$HOME/gems"
 export PATH="$HOME/gems/bin:$PATH"
+
+TARGET="$HOME/uni/courses/SC/SC52135-Thesis/msc_gvoogt"
+if [[ "$PWD" == "$TARGET" ]] || [[ "$PWD" == "$TARGET/"* ]]; then
+	source $TARGET/init_uv
+fi
