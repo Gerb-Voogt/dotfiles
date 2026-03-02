@@ -25,7 +25,7 @@ bindkey -s '^o' 'fzf | xargs nvim\n'
 # Exports
 
 export PATH="$HOME/.tmuxifier/bin:$PATH"
-export NOTES_DIR="/home/gerben/uni/Vault-MSc"
+export NOTES_DIR="/home/gerben/uni/notes"
 export EDITOR="nvim"
 export CPLUS_INCLUDE_PATH=/usr/include/c++/11:/usr/include/x86_64-linux-gnu/c++/11
 export LC_TIME="en_GB.utf8"
@@ -81,3 +81,10 @@ TARGET="$HOME/uni/courses/SC/SC52135-Thesis/msc_gvoogt"
 if [[ "$PWD" == "$TARGET" ]] || [[ "$PWD" == "$TARGET/"* ]]; then
 	source $TARGET/init_uv
 fi
+
+
+
+# Gurobi
+export GUROBI_HOME="/home/gerben/apps/gurobi/gurobi1301/linux64"
+export PATH="/home/gerben/apps/gurobi/gurobi1301/linux64/bin:$PATH"
+export LD_LIBRARY_PATH="/home/gerben/apps/gurobi/gurobi1301/linux64/lib:$LD_LIBRARY_PATH"
